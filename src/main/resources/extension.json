@@ -1,5 +1,5 @@
 {
-  "entrypoint": "world.cepi.example.ExampleExtension",
-  "name": "ExampleExtension",
-  "version": "1.0.0-EXAMPLE"
+  "entrypoint": "world.cepi.bukstom.BukstomExtension",
+  "name": "Bukstom",
+  "version": "1.0.0"
 }

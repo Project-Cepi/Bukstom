@@ -15,6 +15,8 @@ repositories {
     // Use mavenCentral
     maven(url = "https://repo1.maven.org/maven2/")
     maven(url = "http://repo.spongepowered.org/maven")
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
+    maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven(url = "https://libraries.minecraft.net")
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
@@ -38,6 +40,8 @@ dependencies {
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+
+    implementation("org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT")
 }
 
 tasks.withType<Test> {
