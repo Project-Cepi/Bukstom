@@ -1,6 +1,7 @@
 package org.bukkit.craftbukkit.entity
 
 import net.minestom.server.chat.ColoredText
+import net.minestom.server.resourcepack.ResourcePack
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
 import org.bukkit.advancement.AdvancementProgress
@@ -72,11 +73,11 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun hasPermission(name: String): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.hasPermission(name)
     }
 
     override fun hasPermission(perm: Permission): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.hasPermission(perm.name)
     }
 
     override fun addAttachment(plugin: Plugin, name: String, value: Boolean): PermissionAttachment {
@@ -100,7 +101,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun recalculatePermissions() {
-        TODO("Not yet implemented")
+        return // unnecessary
     }
 
     override fun getEffectivePermissions(): MutableSet<PermissionAttachmentInfo> {
@@ -112,15 +113,15 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun sendMessage(messages: Array<out String>) {
-        TODO("Not yet implemented")
+        messages.forEach { minestomPlayer.sendMessage(it) }
     }
 
     override fun sendMessage(sender: UUID?, message: String) {
-        TODO("Not yet implemented")
+        minestomPlayer.sendMessage(message)
     }
 
     override fun sendMessage(sender: UUID?, messages: Array<out String>) {
-        TODO("Not yet implemented")
+        messages.forEach { minestomPlayer.sendMessage(it) }
     }
 
     override fun getServer(): Server {
@@ -228,7 +229,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun isDead(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isDead
     }
 
     override fun isValid(): Boolean {
@@ -288,7 +289,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun getUniqueId(): UUID {
-        TODO("Not yet implemented")
+        return minestomPlayer.uuid
     }
 
     override fun getTicksLived(): Int {
@@ -312,7 +313,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun getType(): EntityType {
-        TODO("Not yet implemented")
+        return EntityType.PLAYER
     }
 
     override fun isInsideVehicle(): Boolean {
@@ -340,7 +341,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun isGlowing(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isGlowing
     }
 
     override fun setInvulnerable(flag: Boolean) {
@@ -1256,11 +1257,11 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun getAllowFlight(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isAllowFlying
     }
 
     override fun setAllowFlight(flight: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.isAllowFlying = flight
     }
 
     override fun hidePlayer(player: Player) {
@@ -1284,11 +1285,11 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun isFlying(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isFlying
     }
 
     override fun setFlying(value: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.isFlying = value
     }
 
     override fun setFlySpeed(value: Float) {
@@ -1312,7 +1313,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun setResourcePack(url: String) {
-        TODO("Not yet implemented")
+        minestomPlayer.setResourcePack(ResourcePack(url, null))
     }
 
     override fun setResourcePack(url: String, hash: ByteArray) {
@@ -1360,7 +1361,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun resetTitle() {
-        TODO("Not yet implemented")
+        minestomPlayer.resetTitle()
     }
 
     override fun spawnParticle(particle: Particle, location: Location, count: Int) {

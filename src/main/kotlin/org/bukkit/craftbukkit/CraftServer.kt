@@ -8,6 +8,7 @@ import org.bukkit.boss.*
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.command.PluginCommand
+import org.bukkit.craftbukkit.command.CraftCommandMap
 import org.bukkit.craftbukkit.entity.CraftPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
@@ -20,17 +21,24 @@ import org.bukkit.map.MapView
 import org.bukkit.plugin.Plugin
 import org.bukkit.plugin.PluginManager
 import org.bukkit.plugin.ServicesManager
+import org.bukkit.plugin.SimplePluginManager
 import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.util.CachedServerIcon
+import world.cepi.bukstom.pluginFolder
 import java.awt.image.BufferedImage
 import java.io.File
 import java.util.*
 import java.util.function.Consumer
+import java.util.logging.Level
 import java.util.logging.Logger
 
+
 class CraftServer: Server {
+    private val commandMap = CraftCommandMap(this)
+    private val pluginManager = SimplePluginManager(this, commandMap)
+
     override fun sendPluginMessage(source: Plugin, channel: String, message: ByteArray) {
         TODO("Not yet implemented")
     }
@@ -522,4 +530,23 @@ class CraftServer: Server {
     override fun spigot(): Server.Spigot {
         TODO("Not yet implemented")
     }
+
+    fun loadPlugins() {
+        pluginFolder.mkdirs()
+
+        pluginManager.loadPlugins(pluginFolder).forEach {
+            try {
+                it.logger.info("Loading ${it.description.fullName}")
+                it.onLoad()
+            } catch (ex: Exception) {
+                Logger.getLogger(CraftServer::class.java.name).log(
+                    Level.SEVERE,
+                    ex.message.toString() + " initializing " + it.description
+                        .fullName + " (Is it up to date?)",
+                    ex
+                )
+            }
+        }
+    }
+
 }

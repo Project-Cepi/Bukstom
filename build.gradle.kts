@@ -1,7 +1,10 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
     kotlin("plugin.serialization") version "1.4.10"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
     maven
 
     // Apply the application plugin to add support for building a jar
@@ -51,4 +54,15 @@ tasks.withType<Test> {
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+}
+
+tasks {
+    named<ShadowJar>("shadowJar") {
+        mergeServiceFiles()
+    }
+
+    test { useJUnitPlatform() }
+
+    build { dependsOn(shadowJar) }
+
 }
