@@ -44,7 +44,14 @@ dependencies {
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
+    // Get the spigot API
     implementation("org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT")
+
+    // Get commons lib
+    implementation("com.google.guava:guava:21.0")
+    implementation("org.apache.commons:commons-lang3:3.11")
+    implementation("commons-collections:commons-collections:3.2.2")
+    implementation("org.apache.commons:commons-collections4:4.2")
 }
 
 tasks.withType<Test> {

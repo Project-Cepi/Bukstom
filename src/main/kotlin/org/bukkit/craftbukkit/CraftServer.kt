@@ -38,6 +38,7 @@ import java.util.logging.Logger
 class CraftServer: Server {
     private val commandMap = CraftCommandMap(this)
     private val pluginManager = SimplePluginManager(this, commandMap)
+    private val logger = Logger.getLogger("Minecraft")
 
     override fun sendPluginMessage(source: Plugin, channel: String, message: ByteArray) {
         TODO("Not yet implemented")
@@ -48,15 +49,15 @@ class CraftServer: Server {
     }
 
     override fun getName(): String {
-        TODO("Not yet implemented")
+        return "Minestom"
     }
 
     override fun getVersion(): String {
-        TODO("Not yet implemented")
+        return MinecraftServer.VERSION_NAME
     }
 
     override fun getBukkitVersion(): String {
-        TODO("Not yet implemented")
+        return MinecraftServer.VERSION_NAME
     }
 
     override fun getOnlinePlayers(): MutableCollection<out Player> {
@@ -230,7 +231,7 @@ class CraftServer: Server {
     }
 
     override fun getLogger(): Logger {
-        TODO("Not yet implemented")
+        return logger
     }
 
     override fun getPluginCommand(name: String): PluginCommand? {
