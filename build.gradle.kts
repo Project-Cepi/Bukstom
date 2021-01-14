@@ -48,7 +48,7 @@ dependencies {
     implementation("org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT")
 
     // Get commons lib
-    implementation("com.google.guava:guava:21.0")
+    implementation("com.google.guava:guava:30.1-jre")
     implementation("org.apache.commons:commons-lang3:3.11")
     implementation("commons-collections:commons-collections:3.2.2")
     implementation("org.apache.commons:commons-collections4:4.4")
