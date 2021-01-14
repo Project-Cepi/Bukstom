@@ -993,7 +993,7 @@ class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player
     }
 
     override fun getDisplayName(): String {
-        return minestomPlayer.displayName!!.message
+        return minestomPlayer.displayName!!.rawMessage
     }
 
     override fun setDisplayName(name: String?) {
