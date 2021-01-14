@@ -51,7 +51,7 @@ dependencies {
     implementation("com.google.guava:guava:21.0")
     implementation("org.apache.commons:commons-lang3:3.11")
     implementation("commons-collections:commons-collections:3.2.2")
-    implementation("org.apache.commons:commons-collections4:4.2")
+    implementation("org.apache.commons:commons-collections4:4.4")
 }
 
 tasks.withType<Test> {
