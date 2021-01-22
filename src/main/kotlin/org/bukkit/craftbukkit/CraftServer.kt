@@ -1,6 +1,7 @@
 package org.bukkit.craftbukkit
 
 import net.minestom.server.MinecraftServer
+import net.minestom.server.extras.MojangAuth
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
 import org.bukkit.block.data.BlockData
@@ -49,7 +50,7 @@ class CraftServer: Server {
     }
 
     override fun getName(): String {
-        return "Minestom"
+        return MinecraftServer.getBrandName()
     }
 
     override fun getVersion(): String {
@@ -287,7 +288,7 @@ class CraftServer: Server {
     }
 
     override fun getOnlineMode(): Boolean {
-        TODO("Not yet implemented")
+        return MojangAuth.isEnabled()
     }
 
     override fun getAllowFlight(): Boolean {
@@ -299,7 +300,7 @@ class CraftServer: Server {
     }
 
     override fun shutdown() {
-        TODO("Not yet implemented")
+        MinecraftServer.stopCleanly()
     }
 
     override fun broadcast(message: String, permission: String): Int {
