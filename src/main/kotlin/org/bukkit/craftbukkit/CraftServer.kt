@@ -115,6 +115,7 @@ class CraftServer: Server {
 
     override fun broadcastMessage(message: String): Int {
         MinecraftServer.getConnectionManager().broadcastMessage(ColoredText.of(message))
+        return 1 // TODO actually return a useful value
     }
 
     override fun getUpdateFolder(): String {
