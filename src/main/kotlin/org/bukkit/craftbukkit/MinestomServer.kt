@@ -10,8 +10,8 @@ import org.bukkit.boss.*
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.command.PluginCommand
-import org.bukkit.craftbukkit.command.CraftCommandMap
-import org.bukkit.craftbukkit.entity.CraftPlayer
+import org.bukkit.craftbukkit.command.MinestomCommandMap
+import org.bukkit.craftbukkit.entity.MinestomPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
@@ -36,8 +36,8 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 
-class CraftServer: Server {
-    val commandMap = CraftCommandMap(this)
+class MinestomServer: Server {
+    val commandMap = MinestomCommandMap(this)
     private val pluginManager = MinestomPluginLoader(this, commandMap)
     private val logger = Logger.getLogger("Minecraft")
     private val helpMap = MinestomHelpMap(this)
@@ -63,7 +63,7 @@ class CraftServer: Server {
     }
 
     override fun getOnlinePlayers(): MutableCollection<out Player> {
-        return Collections.unmodifiableList(MinecraftServer.getConnectionManager().onlinePlayers.map { CraftPlayer(it) })
+        return Collections.unmodifiableList(MinecraftServer.getConnectionManager().onlinePlayers.map { MinestomPlayer(it) })
     }
 
     override fun getMaxPlayers(): Int {
@@ -156,7 +156,7 @@ class CraftServer: Server {
     }
 
     override fun getPlayer(id: UUID): Player? {
-        return MinecraftServer.getConnectionManager().getPlayer(id)?.let { CraftPlayer(it) }
+        return MinecraftServer.getConnectionManager().getPlayer(id)?.let { MinestomPlayer(it) }
     }
 
     override fun getPlayerExact(name: String): Player? {
@@ -550,7 +550,7 @@ class CraftServer: Server {
                 it.logger.info("Loading ${it.description.fullName}")
                 it.onLoad()
             } catch (ex: Exception) {
-                Logger.getLogger(CraftServer::class.java.name).log(
+                Logger.getLogger(MinestomServer::class.java.name).log(
                     Level.SEVERE,
                     ex.message.toString() + " initializing " + it.description
                         .fullName + " (Is it up to date?)",
@@ -574,10 +574,10 @@ class CraftServer: Server {
         }
         if (type == PluginLoadOrder.POSTWORLD) {
             // TODO
-//            commandMap.setFallbackCommands()
+            commandMap.setFallbackCommands()
 //            setVanillaCommands()
-//            commandMap.registerServerAliases()
-//            DefaultPermissions.registerCorePermissions()
+            commandMap.registerServerAliases()
+            DefaultPermissions.registerCorePermissions()
 //            CraftDefaultPermissions.registerCorePermissions()
 //            loadCustomPermissions()
 //            helpMap.initializeCommands()
@@ -597,8 +597,7 @@ class CraftServer: Server {
                 } catch (ex: IllegalArgumentException) {
                     getLogger().log(
                         Level.WARNING,
-                        "Plugin " + plugin.description.fullName + " tried to register permission '" + perm.getName()
-                            .toString() + "' but it's already registered",
+                        "Plugin " + plugin.description.fullName + " tried to register permission '" + perm.name + "' but it's already registered",
                         ex
                     )
                 }
@@ -606,7 +605,7 @@ class CraftServer: Server {
             pluginManager.dirtyPermissibles()
             pluginManager.enablePlugin(plugin)
         } catch (ex: Throwable) {
-            Logger.getLogger(CraftServer::class.java.name)
+            Logger.getLogger(MinestomServer::class.java.name)
                 .log(Level.SEVERE, ex.message + " loading " + plugin.description.fullName + " (Is it up to date?)", ex)
         }
     }

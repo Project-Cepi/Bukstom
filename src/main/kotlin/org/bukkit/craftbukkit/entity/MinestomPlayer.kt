@@ -34,7 +34,7 @@ import org.bukkit.util.Vector
 import java.net.InetSocketAddress
 import java.util.*
 
-class CraftPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player {
+class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player {
 
     override fun getAttribute(attribute: Attribute): AttributeInstance? {
         TODO("Not yet implemented")

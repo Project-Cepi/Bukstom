@@ -5,7 +5,7 @@ import org.bukkit.command.Command
 import org.bukkit.command.SimpleCommandMap
 
 
-class CraftCommandMap(server: Server) : SimpleCommandMap(server) {
+class MinestomCommandMap(server: Server) : SimpleCommandMap(server) {
     val knownCommands: Map<String, Command>
         get() = knownCommands
 }

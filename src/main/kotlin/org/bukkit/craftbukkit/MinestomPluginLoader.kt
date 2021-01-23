@@ -460,7 +460,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: S
     override fun enablePlugin(plugin: Plugin) {
         if (!plugin.isEnabled) {
             val pluginCommands = PluginCommandYamlParser.parse(plugin)
-            if (!pluginCommands.isEmpty()) {
+            if (pluginCommands.isNotEmpty()) {
                 commandMap.registerAll(plugin.description.name, pluginCommands)
             }
             try {
@@ -717,7 +717,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: S
     }
 
     override fun recalculatePermissionDefaults(perm: Permission) {
-        if (perm != null && permissions.containsKey(perm.name.toLowerCase(Locale.ENGLISH))) {
+        if (permissions.containsKey(perm.name.toLowerCase(Locale.ENGLISH))) {
             defaultPerms[true]!!.remove(perm)
             defaultPerms[false]!!.remove(perm)
             calculatePermissionDefault(perm, true)
