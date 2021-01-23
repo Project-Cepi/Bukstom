@@ -2,8 +2,6 @@ package org.bukkit.craftbukkit
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.chat.ColoredText
-import net.minestom.server.chat.JsonMessage
-import net.minestom.server.chat.RichMessage
 import net.minestom.server.extras.MojangAuth
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
@@ -22,11 +20,13 @@ import org.bukkit.help.HelpMap
 import org.bukkit.inventory.*
 import org.bukkit.loot.LootTable
 import org.bukkit.map.MapView
+import org.bukkit.permissions.Permission
 import org.bukkit.plugin.*
 import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.util.CachedServerIcon
+import org.bukkit.util.permissions.DefaultPermissions
 import world.cepi.bukstom.pluginFolder
 import java.awt.image.BufferedImage
 import java.io.File
@@ -37,9 +37,10 @@ import java.util.logging.Logger
 
 
 class CraftServer: Server {
-    private val commandMap = CraftCommandMap(this)
+    val commandMap = CraftCommandMap(this)
     private val pluginManager = MinestomPluginLoader(this, commandMap)
     private val logger = Logger.getLogger("Minecraft")
+    private val helpMap = MinestomHelpMap(this)
 
     override fun sendPluginMessage(source: Plugin, channel: String, message: ByteArray) {
         TODO("Not yet implemented")
@@ -237,7 +238,14 @@ class CraftServer: Server {
     }
 
     override fun getPluginCommand(name: String): PluginCommand? {
-        TODO("Not yet implemented")
+        val command = commandMap.getCommand(name)
+
+        return if (command is PluginCommand) {
+            command
+        } else {
+            null
+        }
+
     }
 
     override fun savePlayers() {
@@ -365,7 +373,7 @@ class CraftServer: Server {
     }
 
     override fun getHelpMap(): HelpMap {
-        TODO("Not yet implemented")
+        return helpMap
     }
 
     override fun createInventory(owner: InventoryHolder?, type: InventoryType): Inventory {
@@ -551,5 +559,57 @@ class CraftServer: Server {
             }
         }
     }
+
+    fun enablePlugins(type: PluginLoadOrder) {
+        if (type == PluginLoadOrder.STARTUP) {
+            helpMap.clear()
+            // TODO
+//            helpMap.initializeGeneralTopics()
+        }
+        val plugins = pluginManager.plugins
+        for (plugin in plugins) {
+            if (!plugin.isEnabled && plugin.description.load === type) {
+                enablePlugin(plugin)
+            }
+        }
+        if (type == PluginLoadOrder.POSTWORLD) {
+            // TODO
+//            commandMap.setFallbackCommands()
+//            setVanillaCommands()
+//            commandMap.registerServerAliases()
+//            DefaultPermissions.registerCorePermissions()
+//            CraftDefaultPermissions.registerCorePermissions()
+//            loadCustomPermissions()
+//            helpMap.initializeCommands()
+//            syncCommands()
+        }
+    }
+
+    fun disablePlugins() {
+        pluginManager.disablePlugins()
+    }
+    private fun enablePlugin(plugin: Plugin) {
+        try {
+            val perms: List<Permission> = plugin.description.permissions
+            for (perm in perms) {
+                try {
+                    pluginManager.addPermission(perm, false)
+                } catch (ex: IllegalArgumentException) {
+                    getLogger().log(
+                        Level.WARNING,
+                        "Plugin " + plugin.description.fullName + " tried to register permission '" + perm.getName()
+                            .toString() + "' but it's already registered",
+                        ex
+                    )
+                }
+            }
+            pluginManager.dirtyPermissibles()
+            pluginManager.enablePlugin(plugin)
+        } catch (ex: Throwable) {
+            Logger.getLogger(CraftServer::class.java.name)
+                .log(Level.SEVERE, ex.message + " loading " + plugin.description.fullName + " (Is it up to date?)", ex)
+        }
+    }
+
 
 }
