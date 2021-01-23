@@ -1,6 +1,9 @@
 package org.bukkit.craftbukkit
 
 import net.minestom.server.MinecraftServer
+import net.minestom.server.chat.ColoredText
+import net.minestom.server.chat.JsonMessage
+import net.minestom.server.chat.RichMessage
 import net.minestom.server.extras.MojangAuth
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
@@ -19,10 +22,7 @@ import org.bukkit.help.HelpMap
 import org.bukkit.inventory.*
 import org.bukkit.loot.LootTable
 import org.bukkit.map.MapView
-import org.bukkit.plugin.Plugin
-import org.bukkit.plugin.PluginManager
-import org.bukkit.plugin.ServicesManager
-import org.bukkit.plugin.SimplePluginManager
+import org.bukkit.plugin.*
 import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
@@ -38,7 +38,7 @@ import java.util.logging.Logger
 
 class CraftServer: Server {
     private val commandMap = CraftCommandMap(this)
-    private val pluginManager = SimplePluginManager(this, commandMap)
+    private val pluginManager = MinestomPluginLoader(this, commandMap)
     private val logger = Logger.getLogger("Minecraft")
 
     override fun sendPluginMessage(source: Plugin, channel: String, message: ByteArray) {
@@ -114,15 +114,15 @@ class CraftServer: Server {
     }
 
     override fun broadcastMessage(message: String): Int {
-        TODO("Not yet implemented")
+        MinecraftServer.getConnectionManager().broadcastMessage(ColoredText.of(message))
     }
 
     override fun getUpdateFolder(): String {
-        TODO("Not yet implemented")
+        return "update" // TODO add to configuration
     }
 
     override fun getUpdateFolderFile(): File {
-        TODO("Not yet implemented")
+        return File("./plugins/update") // TODO add to configuration
     }
 
     override fun getConnectionThrottle(): Long {
@@ -154,7 +154,7 @@ class CraftServer: Server {
     }
 
     override fun getPlayer(id: UUID): Player? {
-        TODO("Not yet implemented")
+        return MinecraftServer.getConnectionManager().getPlayer(id)?.let { CraftPlayer(it) }
     }
 
     override fun getPlayerExact(name: String): Player? {
@@ -166,7 +166,7 @@ class CraftServer: Server {
     }
 
     override fun getPluginManager(): PluginManager {
-        TODO("Not yet implemented")
+        return pluginManager
     }
 
     override fun getScheduler(): BukkitScheduler {
