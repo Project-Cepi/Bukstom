@@ -26,7 +26,6 @@ import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.util.CachedServerIcon
-import org.bukkit.util.permissions.DefaultPermissions
 import world.cepi.bukstom.pluginFolder
 import java.awt.image.BufferedImage
 import java.io.File
@@ -253,7 +252,18 @@ class MinestomServer: Server {
     }
 
     override fun dispatchCommand(sender: CommandSender, commandLine: String): Boolean {
-        TODO("Not yet implemented")
+        if (commandMap.dispatch(sender, commandLine)) {
+            return true
+        }
+
+        if (sender is Player) {
+            sender.sendMessage("Unknown command. Type \"/help\" for help.")
+        } else {
+            sender.sendMessage("Unknown command. Type \"help\" for help.")
+        }
+
+        return false
+
     }
 
     override fun addRecipe(recipe: Recipe?): Boolean {
@@ -285,7 +295,21 @@ class MinestomServer: Server {
     }
 
     override fun getCommandAliases(): MutableMap<String, Array<String>> {
-        TODO("Not yet implemented")
+        // TODO commands configuration
+//        val section: ConfigurationSection = commandsConfiguration.getConfigurationSection("aliases")
+//        val result: MutableMap<String, Array<String?>> = LinkedHashMap()
+//
+//        for (key in section.getKeys(false)) {
+//            val commands: List<String?> = if (section.isList(key)) {
+//                section.getStringList(key)
+//            } else {
+//                ImmutableList.of(section.getString(key))
+//            }
+//            result[key] = commands.toTypedArray()
+//        }
+//
+//        return result
+        return mutableMapOf()
     }
 
     override fun getSpawnRadius(): Int {
@@ -577,7 +601,8 @@ class MinestomServer: Server {
             commandMap.setFallbackCommands()
 //            setVanillaCommands()
             commandMap.registerServerAliases()
-            DefaultPermissions.registerCorePermissions()
+            // TODO fix validate
+//            DefaultPermissions.registerCorePermissions()
 //            CraftDefaultPermissions.registerCorePermissions()
 //            loadCustomPermissions()
 //            helpMap.initializeCommands()

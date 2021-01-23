@@ -125,7 +125,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getServer(): Server {
-        TODO("Not yet implemented")
+        return Bukkit.getServer()
     }
 
     override fun getName(): String {

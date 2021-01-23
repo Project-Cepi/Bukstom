@@ -8,6 +8,7 @@ import org.bukkit.Server
 import org.bukkit.command.PluginCommandYamlParser
 import org.bukkit.command.SimpleCommandMap
 import org.bukkit.command.defaults.TimingsCommand
+import org.bukkit.craftbukkit.command.MinestomCommandMap
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
@@ -29,7 +30,7 @@ import kotlin.collections.LinkedHashSet
 /**
  * Handles all plugin management from the Server
  */
-class MinestomPluginLoader(private val server: Server, private val commandMap: SimpleCommandMap) : PluginManager {
+class MinestomPluginLoader(private val server: Server, private val commandMap: MinestomCommandMap) : PluginManager {
     private val fileAssociations: MutableMap<Pattern, PluginLoader> = HashMap()
     private val plugins: MutableList<Plugin> = ArrayList()
     private val lookupNames: MutableMap<String, Plugin> = HashMap()

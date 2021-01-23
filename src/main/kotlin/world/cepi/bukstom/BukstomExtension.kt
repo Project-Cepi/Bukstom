@@ -1,5 +1,6 @@
 package world.cepi.bukstom
 
+import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension
 import org.bukkit.Bukkit
 import org.bukkit.craftbukkit.MinestomServer
@@ -15,6 +16,8 @@ class BukstomExtension : Extension() {
     }
 
     override fun initialize() {
+
+        MinecraftServer.getCommandManager().register(BukkitCommand())
 
         Bukkit.setServer(server)
         server.loadPlugins()
