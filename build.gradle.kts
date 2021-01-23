@@ -52,7 +52,7 @@ dependencies {
     // Get commons lib
     implementation("com.google.guava:guava:30.1-jre")
     implementation("org.apache.commons:commons-lang3:3.11")
-    implementation("commons-lang:commons-lang:2.4")
+    implementation("commons-lang:commons-lang:2.6")
     implementation("commons-collections:commons-collections:3.2.2")
     implementation("org.apache.commons:commons-collections4:4.4")
 }
