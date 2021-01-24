@@ -1,4 +1,4 @@
-package org.bukkit.craftbukkit.entity
+package world.cepi.bukstom.entity
 
 import net.minestom.server.chat.ColoredText
 import net.minestom.server.resourcepack.ResourcePack
@@ -177,6 +177,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun isOnGround(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInWater(): Boolean {
         TODO("Not yet implemented")
     }
 

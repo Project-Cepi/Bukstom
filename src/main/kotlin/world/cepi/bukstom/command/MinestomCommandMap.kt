@@ -1,6 +1,5 @@
-package org.bukkit.craftbukkit.command
+package world.cepi.bukstom.command
 
-import org.apache.commons.lang.Validate
 import org.bukkit.Location
 import org.bukkit.Server
 import org.bukkit.command.*
@@ -11,7 +10,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 open class MinestomCommandMap(private val server: Server) : CommandMap {
-    protected val knownCommands: MutableMap<String, Command> = HashMap()
+    private val knownCommands: MutableMap<String, Command> = HashMap()
     private fun setDefaultCommands() {
         register("bukkit", VersionCommand("version"))
         register("bukkit", ReloadCommand("reload"))
@@ -27,9 +26,7 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
      * {@inheritDoc}
      */
     override fun registerAll(fallbackPrefix: String, commands: List<Command>) {
-        for (c in commands) {
-            register(fallbackPrefix, c)
-        }
+        commands.forEach { register(fallbackPrefix, it) }
     }
 
     /**
@@ -102,16 +99,17 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
      */
     @Throws(CommandException::class)
     override fun dispatch(sender: CommandSender, commandLine: String): Boolean {
+
         val args = commandLine.split(" ").toTypedArray()
-        if (args.isEmpty()) {
+        if (args.isEmpty())
             return false
-        }
+
         val sentCommandLabel = args[0].toLowerCase(Locale.ENGLISH)
         val target = getCommand(sentCommandLabel) ?: return false
         try {
             target.timings.startTiming() // Spigot
             // Note: we don't return the result of target.execute as thats success / failure, we return handled (true) or not handled (false)
-            target.execute(sender, sentCommandLabel, Arrays.copyOfRange(args, 1, args.size))
+            target.execute(sender, sentCommandLabel, args.copyOfRange(1, args.size))
             target.timings.stopTiming() // Spigot
         } catch (ex: CommandException) {
             target.timings.stopTiming() // Spigot
@@ -127,9 +125,11 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
 
     @Synchronized
     override fun clearCommands() {
+
         for ((_, value) in knownCommands) {
             value.unregister(this)
         }
+
         knownCommands.clear()
         setDefaultCommands()
     }
@@ -143,8 +143,6 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
     }
 
     override fun tabComplete(sender: CommandSender, cmdLine: String, location: Location?): List<String>? {
-        Validate.notNull(sender, "Sender cannot be null")
-        Validate.notNull(cmdLine, "Command line cannot null")
         val spaceIndex = cmdLine.indexOf(' ')
         if (spaceIndex == -1) {
             val completions = ArrayList<String>()

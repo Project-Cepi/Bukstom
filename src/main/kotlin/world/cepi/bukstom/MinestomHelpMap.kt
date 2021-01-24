@@ -1,4 +1,4 @@
-package org.bukkit.craftbukkit
+package world.cepi.bukstom
 
 import org.bukkit.command.Command
 import org.bukkit.help.*

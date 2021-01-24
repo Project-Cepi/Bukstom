@@ -47,14 +47,15 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // Get the spigot API
-    implementation("org.spigotmc:spigot-api:1.16.3-R0.1-SNAPSHOT")
+    implementation("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
 
     // Get commons lib
     implementation("com.google.guava:guava:30.1-jre")
-    implementation("org.apache.commons:commons-lang3:3.11")
-    implementation("commons-lang:commons-lang:2.4")
     implementation("commons-collections:commons-collections:3.2.2")
     implementation("org.apache.commons:commons-collections4:4.4")
+
+    // Weird bukkit deps
+    implementation("net.sf.jopt-simple:jopt-simple:4.7")
 }
 
 tasks.withType<Test> {

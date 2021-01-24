@@ -1,4 +1,4 @@
-package org.bukkit.craftbukkit
+package world.cepi.bukstom
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.chat.ColoredText
@@ -10,8 +10,8 @@ import org.bukkit.boss.*
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.command.PluginCommand
-import org.bukkit.craftbukkit.command.MinestomCommandMap
-import org.bukkit.craftbukkit.entity.MinestomPlayer
+import world.cepi.bukstom.command.MinestomCommandMap
+import world.cepi.bukstom.entity.MinestomPlayer
 import org.bukkit.entity.Entity
 import org.bukkit.entity.Player
 import org.bukkit.event.inventory.InventoryType
@@ -22,11 +22,12 @@ import org.bukkit.loot.LootTable
 import org.bukkit.map.MapView
 import org.bukkit.permissions.Permission
 import org.bukkit.plugin.*
+import org.bukkit.plugin.java.JavaPluginLoader
 import org.bukkit.plugin.messaging.Messenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.util.CachedServerIcon
-import world.cepi.bukstom.pluginFolder
+import world.cepi.bukstom.util.MinestomUnsafeValues
 import java.awt.image.BufferedImage
 import java.io.File
 import java.util.*
@@ -86,6 +87,10 @@ class MinestomServer: Server {
     }
 
     override fun getGenerateStructures(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMaxWorldSize(): Int {
         TODO("Not yet implemented")
     }
 
@@ -559,7 +564,7 @@ class MinestomServer: Server {
     }
 
     override fun getUnsafe(): UnsafeValues {
-        TODO("Not yet implemented")
+        return MinestomUnsafeValues
     }
 
     override fun spigot(): Server.Spigot {
@@ -567,6 +572,7 @@ class MinestomServer: Server {
     }
 
     fun loadPlugins() {
+        pluginManager.registerInterface(JavaPluginLoader::class.java)
         pluginFolder.mkdirs()
 
         pluginManager.loadPlugins(pluginFolder).forEach {

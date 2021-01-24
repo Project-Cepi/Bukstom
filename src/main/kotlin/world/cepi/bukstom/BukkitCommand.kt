@@ -4,7 +4,7 @@ import net.minestom.server.command.CommandProcessor
 import net.minestom.server.command.CommandSender
 import net.minestom.server.entity.Player
 import org.bukkit.Bukkit
-import org.bukkit.craftbukkit.command.MinestomCommandSender
+import world.cepi.bukstom.command.MinestomCommandSender
 
 class BukkitCommand: CommandProcessor {
     override fun getCommandName(): String {

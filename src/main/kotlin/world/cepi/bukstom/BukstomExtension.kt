@@ -2,8 +2,8 @@ package world.cepi.bukstom
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension
+import org.apache.commons.lang.Validate
 import org.bukkit.Bukkit
-import org.bukkit.craftbukkit.MinestomServer
 import org.bukkit.plugin.PluginLoadOrder
 import java.io.File
 
@@ -18,6 +18,8 @@ class BukstomExtension : Extension() {
     override fun initialize() {
 
         MinecraftServer.getCommandManager().register(BukkitCommand())
+
+        Validate.notNull(null)
 
         Bukkit.setServer(server)
         server.loadPlugins()

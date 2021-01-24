@@ -1,4 +1,4 @@
-package org.bukkit.plugin
+package world.cepi.bukstom
 
 import com.google.common.base.Preconditions
 import com.google.common.collect.ImmutableSet
@@ -6,9 +6,8 @@ import com.google.common.graph.GraphBuilder
 import com.google.common.graph.Graphs
 import org.bukkit.Server
 import org.bukkit.command.PluginCommandYamlParser
-import org.bukkit.command.SimpleCommandMap
 import org.bukkit.command.defaults.TimingsCommand
-import org.bukkit.craftbukkit.command.MinestomCommandMap
+import world.cepi.bukstom.command.MinestomCommandMap
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
 import org.bukkit.event.HandlerList
@@ -16,6 +15,7 @@ import org.bukkit.event.Listener
 import org.bukkit.permissions.Permissible
 import org.bukkit.permissions.Permission
 import org.bukkit.permissions.PermissionDefault
+import org.bukkit.plugin.*
 import org.bukkit.util.FileUtil
 import java.io.File
 import java.lang.reflect.Constructor
@@ -104,6 +104,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
         if (server.updateFolder != "") {
             updateDirectory = File(directory, server.updateFolder)
         }
+
         val plugins: MutableMap<String, File> = HashMap()
         val loadedPlugins: MutableSet<String> = HashSet()
         val pluginsProvided: MutableMap<String, String> = HashMap()
