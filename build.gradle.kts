@@ -18,7 +18,7 @@ repositories {
     // Use mavenCentral
     mavenCentral()
     maven(url = "https://repo1.maven.org/maven2/")
-    maven(url = "http://repo.spongepowered.org/maven")
+    maven(url = "https://repo.spongepowered.org/maven")
     maven(url = "https://oss.sonatype.org/content/repositories/snapshots")
     maven(url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven(url = "https://libraries.minecraft.net")
