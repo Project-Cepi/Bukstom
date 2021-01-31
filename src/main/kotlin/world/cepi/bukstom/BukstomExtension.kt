@@ -19,8 +19,6 @@ class BukstomExtension : Extension() {
 
         MinecraftServer.getCommandManager().register(BukkitCommand())
 
-        Validate.notNull(null)
-
         Bukkit.setServer(server)
         server.loadPlugins()
         server.enablePlugins(PluginLoadOrder.STARTUP)
