@@ -55,7 +55,7 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:4.4")
 
     // Weird bukkit deps
-    implementation("net.sf.jopt-simple:jopt-simple:4.7")
+    implementation("net.sf.jopt-simple:jopt-simple:4.9")
 }
 
 tasks.withType<Test> {
