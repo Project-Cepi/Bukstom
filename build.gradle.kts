@@ -44,7 +44,7 @@ dependencies {
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     // Get the spigot API
     implementation("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
