@@ -64,6 +64,7 @@ java {
 tasks {
     named<ShadowJar>("shadowJar") {
         mergeServiceFiles()
+        relocate("org.apache.commons.lang", "org.apache.commons.lang3")
     }
 
     test { useJUnitPlatform() }

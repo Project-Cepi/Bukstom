@@ -5,7 +5,7 @@ import com.destroystokyo.paper.profile.PlayerProfile
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
-import net.minestom.server.chat.ColoredText
+import net.minestom.server.adventure.audience.Audiences
 import net.minestom.server.extras.MojangAuth
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
@@ -72,7 +72,7 @@ class MinestomServer: Server {
     }
 
     override fun getMinecraftVersion(): String {
-        TODO("Not yet implemented")
+        return MinecraftServer.VERSION_NAME
     }
 
     override fun getOnlinePlayers(): MutableCollection<out Player> {
@@ -136,7 +136,7 @@ class MinestomServer: Server {
     }
 
     override fun broadcastMessage(message: String): Int {
-        MinecraftServer.getConnectionManager().broadcastMessage(ColoredText.of(message))
+        Audiences.all().sendMessage(Component.text(message))
         return 1 // TODO actually return a useful value
     }
 
