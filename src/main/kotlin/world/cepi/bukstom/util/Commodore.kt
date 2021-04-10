@@ -33,64 +33,6 @@ object Commodore {
             "org/bukkit/inventory/ItemStack ()I getTypeId",
             "org/bukkit/inventory/ItemStack (I)V setTypeId"
         )
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val parser = OptionParser()
-        val inputFlag: OptionSpec<File> =
-            parser.acceptsAll(listOf("i", "input")).withRequiredArg().ofType(File::class.java).required()
-        val outputFlag: OptionSpec<File> = parser.acceptsAll(Arrays.asList("o", "output")).withRequiredArg().ofType(
-            File::class.java
-        ).required()
-        val options = parser.parse(*args)
-        val input: File = options.valueOf(inputFlag)
-        val output: File = options.valueOf(outputFlag)
-        if (input.isDirectory) {
-            if (!output.isDirectory) {
-                System.err.println("If input directory specified, output directory required too")
-                return
-            }
-            for (`in` in input.listFiles()) {
-                if (`in`.name.endsWith(".jar")) {
-                    convert(`in`, File(output, `in`.name))
-                }
-            }
-        } else {
-            convert(input, output)
-        }
-    }
-
-    private fun convert(`in`: File, out: File) {
-        println("Attempting to convert $`in` to $out")
-        try {
-            JarFile(`in`, false).use { inJar ->
-                var entry: JarEntry? = inJar.getJarEntry(".commodore")
-                if (entry != null) {
-                    return
-                }
-                JarOutputStream(FileOutputStream(out)).use { outJar ->
-                    val entries: Enumeration<JarEntry> = inJar.entries()
-                    while (entries.hasMoreElements()) {
-                        entry = entries.nextElement()
-                        inJar.getInputStream(entry).use { `is` ->
-                            var b = ByteStreams.toByteArray(`is`)
-                            if (entry!!.name.endsWith(".class")) {
-                                b = convert(b, false)
-                                entry = JarEntry(entry!!.name)
-                            }
-                            outJar.putNextEntry(entry)
-                            outJar.write(b)
-                        }
-                    }
-                    outJar.putNextEntry(ZipEntry(".commodore"))
-                }
-            }
-        } catch (ex: Exception) {
-            System.err.println("Fatal error trying to convert $`in`")
-            ex.printStackTrace()
-        }
-    }
-
     fun convert(b: ByteArray?, modern: Boolean): ByteArray {
         val cr = ClassReader(b)
         val cw = ClassWriter(cr, 0)
