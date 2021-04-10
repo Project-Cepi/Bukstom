@@ -1,2 +1,6 @@
-# ExampleExtension
- An example extension for Minestom based off of Sabre/kotlin libs.
+# Bukstom
+Implementation of the Bukkit API
+
+## Useful Links
+
+CraftBukkit repo: https://hub.spigotmc.org/stash/projects/spigot/repos/craftbukkit/browse

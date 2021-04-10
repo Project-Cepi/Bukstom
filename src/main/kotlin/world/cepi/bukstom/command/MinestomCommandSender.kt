@@ -70,12 +70,10 @@ class MinestomCommandSender(val commandSender: net.minestom.server.command.Comma
         messages.forEach { sendMessage(it) }
     }
 
-    // TODO why do you need a sender UUID?
     override fun sendMessage(sender: UUID?, message: String) {
-        commandSender.sendMessage(message)
+        sendMessage(message)
     }
 
-    // TODO why do you need a sender UUID?
     override fun sendMessage(sender: UUID?, messages: Array<out String>) {
         sendMessage(messages)
     }

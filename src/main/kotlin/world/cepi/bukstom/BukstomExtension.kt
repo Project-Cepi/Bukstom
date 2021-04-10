@@ -17,7 +17,7 @@ class BukstomExtension : Extension() {
 
     override fun initialize() {
 
-        MinecraftServer.getCommandManager().register(BukkitCommand())
+        MinecraftServer.getCommandManager().register(BukkitCommand)
 
         Bukkit.setServer(server)
         server.loadPlugins()
@@ -28,6 +28,9 @@ class BukstomExtension : Extension() {
     }
 
     override fun terminate() {
+
+        MinecraftServer.getCommandManager().unregister(BukkitCommand)
+
         logger.info("[BukstomExtension] has been disabled!")
     }
 
