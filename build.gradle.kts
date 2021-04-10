@@ -46,7 +46,6 @@ dependencies {
 
     // Get the paper API
     implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
-    implementation("commons-lang:commons-lang:2.6")
 
     // Weird bukkit deps
     implementation("net.sf.jopt-simple:jopt-simple:4.9")
@@ -64,7 +63,6 @@ java {
 tasks {
     named<ShadowJar>("shadowJar") {
         mergeServiceFiles()
-        relocate("org.apache.commons.lang", "org.apache.commons.lango")
     }
 
     test { useJUnitPlatform() }

@@ -2,6 +2,7 @@ package world.cepi.bukstom.util
 
 import io.papermc.paper.inventory.ItemRarity
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import net.minestom.server.MinecraftServer
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
@@ -60,7 +61,7 @@ object MinestomUnsafeValues: UnsafeValues {
         TODO("Not yet implemented")
     }
 
-    fun isLegacy(pdf: PluginDescriptionFile): Boolean {
+    private fun isLegacy(pdf: PluginDescriptionFile): Boolean {
         return pdf.apiVersion == null
     }
 
@@ -84,7 +85,7 @@ object MinestomUnsafeValues: UnsafeValues {
     }
 
     override fun getTimingsServerName(): String {
-        TODO("Not yet implemented")
+        return MinecraftServer.getBrandName()
     }
 
     override fun isSupportedApiVersion(apiVersion: String?): Boolean {
