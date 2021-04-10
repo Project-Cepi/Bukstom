@@ -1144,6 +1144,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun sendBlockDamage(loc: Location, progress: Float) {
+        TODO("Not yet implemented")
+    }
+
     override fun sendChunkChange(loc: Location, sx: Int, sy: Int, sz: Int, data: ByteArray): Boolean {
         TODO("Not yet implemented")
     }
@@ -1257,6 +1261,30 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setFoodLevel(value: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSaturatedRegenRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSaturatedRegenRate(ticks: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUnsaturatedRegenRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setUnsaturatedRegenRate(ticks: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getStarvationRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setStarvationRate(ticks: Int) {
         TODO("Not yet implemented")
     }
 
