@@ -1312,11 +1312,11 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun displayName(): Component {
-        TODO("Not yet implemented")
+        return minestomPlayer.displayName ?: Component.text(minestomPlayer.username)
     }
 
     override fun displayName(displayName: Component?) {
-        TODO("Not yet implemented")
+        minestomPlayer.displayName = displayName
     }
 
     override fun kickPlayer(message: String?) {
@@ -1324,7 +1324,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun kick(message: Component?) {
-        TODO("Not yet implemented")
+        minestomPlayer.kick(message ?: Component.empty())
     }
 
     override fun chat(msg: String) {
@@ -1336,19 +1336,19 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun isSneaking(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isSneaking
     }
 
     override fun setSneaking(sneak: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.isSneaking = sneak
     }
 
     override fun isSprinting(): Boolean {
-        TODO("Not yet implemented")
+        return minestomPlayer.isSprinting
     }
 
     override fun setSprinting(sprinting: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.isSprinting = sprinting
     }
 
     override fun saveData() {
@@ -1528,11 +1528,11 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getLevel(): Int {
-        TODO("Not yet implemented")
+        return minestomPlayer.level
     }
 
     override fun setLevel(level: Int) {
-        TODO("Not yet implemented")
+        minestomPlayer.level = level
     }
 
     override fun getTotalExperience(): Int {
@@ -1560,19 +1560,19 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getSaturation(): Float {
-        TODO("Not yet implemented")
+        return minestomPlayer.foodSaturation
     }
 
     override fun setSaturation(value: Float) {
-        TODO("Not yet implemented")
+        minestomPlayer.foodSaturation = value
     }
 
     override fun getFoodLevel(): Int {
-        TODO("Not yet implemented")
+        return minestomPlayer.food
     }
 
     override fun setFoodLevel(value: Int) {
-        TODO("Not yet implemented")
+        minestomPlayer.food = value
     }
 
     override fun getSaturatedRegenRate(): Int {
@@ -1624,7 +1624,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun canSee(player: Player): Boolean {
-        TODO("Not yet implemented")
+        return (player as? MinestomPlayer)?.let { minestomPlayer.isViewer(it.minestomPlayer) } ?: false
     }
 
     override fun isFlying(): Boolean {
