@@ -1,5 +1,7 @@
 package world.cepi.bukstom.entity
 
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
 import net.minestom.server.chat.ColoredText
 import net.minestom.server.resourcepack.ResourcePack
 import org.bukkit.*
@@ -997,11 +999,11 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getDisplayName(): String {
-        return minestomPlayer.displayName!!.rawMessage
+        return PlainComponentSerializer.plain().serialize(minestomPlayer.displayName ?: Component.text(minestomPlayer.username))
     }
 
     override fun setDisplayName(name: String?) {
-        minestomPlayer.displayName = ColoredText.of(name!!)
+        name?.let { minestomPlayer.displayName = Component.text(name) }
     }
 
     override fun getPlayerListName(): String {
