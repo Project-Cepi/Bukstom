@@ -6,7 +6,6 @@ import com.google.common.graph.GraphBuilder
 import com.google.common.graph.Graphs
 import org.bukkit.Server
 import org.bukkit.command.PluginCommandYamlParser
-import org.bukkit.command.defaults.TimingsCommand
 import world.cepi.bukstom.command.MinestomCommandMap
 import org.bukkit.event.Event
 import org.bukkit.event.EventPriority
@@ -361,7 +360,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
                 }
             }
         }
-        TimingsCommand.timingStart = System.nanoTime() // Spigot
+//        TimingsCommand. = System.nanoTime() // Spigot
         return result.toTypedArray()
     }
 
@@ -545,6 +544,10 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
                 )
             }
         }
+    }
+
+    override fun disablePlugin(plugin: Plugin, closeClassloader: Boolean) {
+        TODO("Not yet implemented")
     }
 
     override fun clearPlugins() {

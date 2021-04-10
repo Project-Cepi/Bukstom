@@ -1,5 +1,6 @@
 package world.cepi.bukstom.command
 
+import co.aikar.timings.TimingsCommand
 import org.bukkit.Location
 import org.bukkit.Server
 import org.bukkit.command.*
@@ -10,7 +11,7 @@ import java.util.*
 import kotlin.collections.HashMap
 
 open class MinestomCommandMap(private val server: Server) : CommandMap {
-    private val knownCommands: MutableMap<String, Command> = HashMap()
+    private val _knownCommands: MutableMap<String, Command> = HashMap()
     private fun setDefaultCommands() {
         register("bukkit", VersionCommand("version"))
         register("bukkit", ReloadCommand("reload"))
@@ -173,6 +174,10 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
         } catch (ex: Throwable) {
             throw CommandException("Unhandled exception executing tab-completer for '$cmdLine' in $target", ex)
         }
+    }
+
+    override fun getKnownCommands(): MutableMap<String, Command> {
+        return _knownCommands
     }
 
     val commands: Collection<Command>

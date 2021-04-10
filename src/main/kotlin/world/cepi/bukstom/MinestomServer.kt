@@ -1,5 +1,9 @@
 package world.cepi.bukstom
 
+import com.destroystokyo.paper.entity.ai.MobGoals
+import com.destroystokyo.paper.profile.PlayerProfile
+import net.kyori.adventure.audience.Audience
+import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.chat.ColoredText
 import net.minestom.server.extras.MojangAuth
@@ -7,6 +11,7 @@ import org.bukkit.*
 import org.bukkit.advancement.Advancement
 import org.bukkit.block.data.BlockData
 import org.bukkit.boss.*
+import org.bukkit.command.CommandMap
 import org.bukkit.command.CommandSender
 import org.bukkit.command.ConsoleCommandSender
 import org.bukkit.command.PluginCommand
@@ -50,6 +55,10 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun audiences(): MutableIterable<Audience> {
+        TODO("Not yet implemented")
+    }
+
     override fun getName(): String {
         return MinecraftServer.getBrandName()
     }
@@ -62,11 +71,19 @@ class MinestomServer: Server {
         return MinecraftServer.VERSION_NAME
     }
 
+    override fun getMinecraftVersion(): String {
+        TODO("Not yet implemented")
+    }
+
     override fun getOnlinePlayers(): MutableCollection<out Player> {
         return Collections.unmodifiableList(MinecraftServer.getConnectionManager().onlinePlayers.map { MinestomPlayer(it) })
     }
 
     override fun getMaxPlayers(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setMaxPlayers(maxPlayers: Int) {
         TODO("Not yet implemented")
     }
 
@@ -171,6 +188,10 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun getPlayerUniqueId(playerName: String): UUID? {
+        TODO("Not yet implemented")
+    }
+
     override fun getPluginManager(): PluginManager {
         return pluginManager
     }
@@ -204,6 +225,10 @@ class MinestomServer: Server {
     }
 
     override fun getWorld(uid: UUID): World? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getWorld(worldKey: NamespacedKey): World? {
         TODO("Not yet implemented")
     }
 
@@ -345,11 +370,19 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun broadcast(message: Component, permission: String): Int {
+        TODO("Not yet implemented")
+    }
+
     override fun getOfflinePlayer(name: String): OfflinePlayer {
         TODO("Not yet implemented")
     }
 
     override fun getOfflinePlayer(id: UUID): OfflinePlayer {
+        TODO("Not yet implemented")
+    }
+
+    override fun getOfflinePlayerIfCached(name: String): OfflinePlayer? {
         TODO("Not yet implemented")
     }
 
@@ -409,6 +442,10 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun createInventory(owner: InventoryHolder?, type: InventoryType, title: Component): Inventory {
+        TODO("Not yet implemented")
+    }
+
     override fun createInventory(owner: InventoryHolder?, type: InventoryType, title: String): Inventory {
         TODO("Not yet implemented")
     }
@@ -417,7 +454,15 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun createInventory(owner: InventoryHolder?, size: Int, title: Component): Inventory {
+        TODO("Not yet implemented")
+    }
+
     override fun createInventory(owner: InventoryHolder?, size: Int, title: String): Inventory {
+        TODO("Not yet implemented")
+    }
+
+    override fun createMerchant(title: Component?): Merchant {
         TODO("Not yet implemented")
     }
 
@@ -449,7 +494,15 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    override fun motd(): Component {
+        TODO("Not yet implemented")
+    }
+
     override fun getMotd(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun shutdownMessage(): Component? {
         TODO("Not yet implemented")
     }
 
@@ -465,7 +518,7 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
-    override fun getScoreboardManager(): ScoreboardManager? {
+    override fun getScoreboardManager(): ScoreboardManager {
         TODO("Not yet implemented")
     }
 
@@ -493,7 +546,11 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
-    override fun createBossBar(title: String?, color: BarColor, style: BarStyle, vararg flags: BarFlag?): BossBar {
+    override fun createVanillaChunkData(world: World, x: Int, z: Int): ChunkGenerator.ChunkData {
+        TODO("Not yet implemented")
+    }
+
+    override fun createBossBar(title: String?, color: BarColor, style: BarStyle, vararg flags: BarFlag): BossBar {
         TODO("Not yet implemented")
     }
 
@@ -502,7 +559,7 @@ class MinestomServer: Server {
         title: String?,
         color: BarColor,
         style: BarStyle,
-        vararg flags: BarFlag?
+        vararg flags: BarFlag
     ): KeyedBossBar {
         TODO("Not yet implemented")
     }
@@ -520,6 +577,22 @@ class MinestomServer: Server {
     }
 
     override fun getEntity(uuid: UUID): Entity? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTPS(): DoubleArray {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTickTimes(): LongArray {
+        TODO("Not yet implemented")
+    }
+
+    override fun getAverageTickTime(): Double {
+        TODO("Not yet implemented")
+    }
+
+    override fun getCommandMap(): CommandMap {
         TODO("Not yet implemented")
     }
 
@@ -568,6 +641,46 @@ class MinestomServer: Server {
     }
 
     override fun spigot(): Server.Spigot {
+        TODO("Not yet implemented")
+    }
+
+    override fun reloadPermissions() {
+        TODO("Not yet implemented")
+    }
+
+    override fun reloadCommandAliases(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun suggestPlayerNamesWhenNullTabCompletions(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPermissionMessage(): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun createProfile(uuid: UUID): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun createProfile(name: String): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun createProfile(uuid: UUID?, name: String?): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun getCurrentTick(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun isStopping(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getMobGoals(): MobGoals {
         TODO("Not yet implemented")
     }
 

@@ -25,6 +25,7 @@ repositories {
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
     maven(url = "https://isaiah.fungus-soft.com/maven-repo")
+    maven(url = "https://papermc.io/repo/repository/maven-public/")
 }
 
 dependencies {
@@ -43,7 +44,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     // Get the spigot API
-    implementation("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
+    implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 
     // Get commons lib
     implementation("com.google.guava:guava:30.1-jre")

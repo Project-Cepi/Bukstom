@@ -1,8 +1,13 @@
 package world.cepi.bukstom.entity
 
+import com.destroystokyo.paper.ClientOption
+import com.destroystokyo.paper.Title
+import com.destroystokyo.paper.block.TargetBlockInfo
+import com.destroystokyo.paper.entity.TargetEntityInfo
+import com.destroystokyo.paper.profile.PlayerProfile
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
-import net.minestom.server.chat.ColoredText
+import net.md_5.bungee.api.chat.BaseComponent
 import net.minestom.server.resourcepack.ResourcePack
 import org.bukkit.*
 import org.bukkit.advancement.Advancement
@@ -12,12 +17,16 @@ import org.bukkit.attribute.AttributeInstance
 import org.bukkit.block.Block
 import org.bukkit.block.BlockFace
 import org.bukkit.block.PistonMoveReaction
+import org.bukkit.block.Sign
 import org.bukkit.block.data.BlockData
 import org.bukkit.conversations.Conversation
 import org.bukkit.conversations.ConversationAbandonedEvent
 import org.bukkit.entity.*
 import org.bukkit.entity.memory.MemoryKey
+import org.bukkit.event.entity.CreatureSpawnEvent
 import org.bukkit.event.entity.EntityDamageEvent
+import org.bukkit.event.inventory.InventoryCloseEvent
+import org.bukkit.event.player.PlayerResourcePackStatusEvent
 import org.bukkit.event.player.PlayerTeleportEvent
 import org.bukkit.inventory.*
 import org.bukkit.map.MapView
@@ -39,6 +48,10 @@ import java.util.*
 class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Player {
 
     override fun getAttribute(attribute: Attribute): AttributeInstance? {
+        TODO("Not yet implemented")
+    }
+
+    override fun registerAttribute(attribute: Attribute) {
         TODO("Not yet implemented")
     }
 
@@ -126,6 +139,46 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         messages.forEach { minestomPlayer.sendMessage(it) }
     }
 
+    override fun sendActionBar(message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendActionBar(alternateChar: Char, message: String) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendActionBar(vararg message: BaseComponent) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showTitle(title: Array<out BaseComponent?>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showTitle(title: BaseComponent?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showTitle(
+        title: Array<out BaseComponent?>?,
+        subtitle: Array<out BaseComponent?>?,
+        fadeInTicks: Int,
+        stayTicks: Int,
+        fadeOutTicks: Int
+    ) {
+        TODO("Not yet implemented")
+    }
+
+    override fun showTitle(
+        title: BaseComponent?,
+        subtitle: BaseComponent?,
+        fadeInTicks: Int,
+        stayTicks: Int,
+        fadeOutTicks: Int
+    ) {
+        TODO("Not yet implemented")
+    }
+
     override fun getServer(): Server {
         return Bukkit.getServer()
     }
@@ -135,6 +188,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun spigot(): Player.Spigot {
+        TODO("Not yet implemented")
+    }
+
+    override fun customName(): Component? {
+        TODO("Not yet implemented")
+    }
+
+    override fun customName(customName: Component?) {
         TODO("Not yet implemented")
     }
 
@@ -406,6 +467,50 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun getOrigin(): Location? {
+        TODO("Not yet implemented")
+    }
+
+    override fun fromMobSpawner(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getChunk(): Chunk {
+        TODO("Not yet implemented")
+    }
+
+    override fun getEntitySpawnReason(): CreatureSpawnEvent.SpawnReason {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInRain(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInBubbleColumn(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInWaterOrRain(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInWaterOrBubbleColumn(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInWaterOrRainOrBubbleColumn(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isInLava(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun isTicking(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun damage(amount: Double) {
         TODO("Not yet implemented")
     }
@@ -467,6 +572,26 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getTargetBlock(transparent: MutableSet<Material>?, maxDistance: Int): Block {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTargetBlock(maxDistance: Int, fluidMode: TargetBlockInfo.FluidMode): Block? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTargetBlockFace(maxDistance: Int, fluidMode: TargetBlockInfo.FluidMode): BlockFace? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTargetBlockInfo(maxDistance: Int, fluidMode: TargetBlockInfo.FluidMode): TargetBlockInfo? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTargetEntity(maxDistance: Int, ignoreBlocks: Boolean): Entity? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTargetEntityInfo(maxDistance: Int, ignoreBlocks: Boolean): TargetEntityInfo? {
         TODO("Not yet implemented")
     }
 
@@ -547,6 +672,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getKiller(): Player? {
+        TODO("Not yet implemented")
+    }
+
+    override fun setKiller(killer: Player?) {
         TODO("Not yet implemented")
     }
 
@@ -690,6 +819,38 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun getArrowsStuck(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setArrowsStuck(arrows: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getShieldBlockingDelay(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setShieldBlockingDelay(delay: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getActiveItem(): ItemStack? {
+        TODO("Not yet implemented")
+    }
+
+    override fun clearActiveItem() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getItemUseRemainingTime(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getHandRaisedTime(): Int {
+        TODO("Not yet implemented")
+    }
+
     override fun getInventory(): PlayerInventory {
         TODO("Not yet implemented")
     }
@@ -734,7 +895,35 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun openAnvil(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
+    override fun openCartographyTable(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
+    override fun openGrindstone(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
+    override fun openLoom(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
+    override fun openSmithingTable(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
+    override fun openStonecutter(location: Location?, force: Boolean): InventoryView? {
+        TODO("Not yet implemented")
+    }
+
     override fun closeInventory() {
+        TODO("Not yet implemented")
+    }
+
+    override fun closeInventory(reason: InventoryCloseEvent.Reason) {
         TODO("Not yet implemented")
     }
 
@@ -770,6 +959,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun getPotentialBedLocation(): Location? {
+        TODO("Not yet implemented")
+    }
+
     override fun sleep(location: Location, force: Boolean): Boolean {
         TODO("Not yet implemented")
     }
@@ -798,7 +991,35 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun isJumping(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun setJumping(jumping: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun playPickupItemAnimation(item: Item, quantity: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getHurtDirection(): Float {
+        TODO("Not yet implemented")
+    }
+
+    override fun setHurtDirection(hurtDirection: Float) {
+        TODO("Not yet implemented")
+    }
+
     override fun getExpToLevel(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun releaseLeftShoulderEntity(): Entity? {
+        TODO("Not yet implemented")
+    }
+
+    override fun releaseRightShoulderEntity(): Entity? {
         TODO("Not yet implemented")
     }
 
@@ -843,6 +1064,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setShoulderEntityRight(entity: Entity?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun openSign(sign: Sign) {
         TODO("Not yet implemented")
     }
 
@@ -915,6 +1140,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getBedSpawnLocation(): Location? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLastLogin(): Long {
+        TODO("Not yet implemented")
+    }
+
+    override fun getLastSeen(): Long {
         TODO("Not yet implemented")
     }
 
@@ -1006,6 +1239,22 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         name?.let { minestomPlayer.displayName = Component.text(name) }
     }
 
+    override fun playerListName(name: Component?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun playerListName(): Component? {
+        TODO("Not yet implemented")
+    }
+
+    override fun playerListHeader(): Component? {
+        TODO("Not yet implemented")
+    }
+
+    override fun playerListFooter(): Component? {
+        TODO("Not yet implemented")
+    }
+
     override fun getPlayerListName(): String {
         TODO("Not yet implemented")
     }
@@ -1034,6 +1283,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun setPlayerListHeaderFooter(header: Array<out BaseComponent?>?, footer: Array<out BaseComponent?>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setPlayerListHeaderFooter(header: BaseComponent?, footer: BaseComponent?) {
+        TODO("Not yet implemented")
+    }
+
     override fun setCompassTarget(loc: Location) {
         TODO("Not yet implemented")
     }
@@ -1046,7 +1303,27 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun getProtocolVersion(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun getVirtualHost(): InetSocketAddress? {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayName(): Component {
+        TODO("Not yet implemented")
+    }
+
+    override fun displayName(displayName: Component?) {
+        TODO("Not yet implemented")
+    }
+
     override fun kickPlayer(message: String?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun kick(message: Component?) {
         TODO("Not yet implemented")
     }
 
@@ -1154,15 +1431,39 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun sendSignChange(loc: Location, lines: Array<out String>?) {
+    override fun sendSignChange(loc: Location, lines: MutableList<Component>?) {
         TODO("Not yet implemented")
     }
 
-    override fun sendSignChange(loc: Location, lines: Array<out String>?, dyeColor: DyeColor) {
+    override fun sendSignChange(loc: Location, lines: MutableList<Component>?, dyeColor: DyeColor) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendSignChange(loc: Location, lines: Array<out String?>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendSignChange(loc: Location, lines: Array<out String?>?, dyeColor: DyeColor) {
         TODO("Not yet implemented")
     }
 
     override fun sendMap(map: MapView) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setTitleTimes(fadeInTicks: Int, stayTicks: Int, fadeOutTicks: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSubtitle(subtitle: Array<out BaseComponent>?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSubtitle(subtitle: BaseComponent?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendTitle(title: Title) {
         TODO("Not yet implemented")
     }
 
@@ -1203,6 +1504,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun giveExp(amount: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun giveExp(amount: Int, applyMending: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun applyMending(amount: Int): Int {
         TODO("Not yet implemented")
     }
 
@@ -1354,6 +1663,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun setResourcePack(url: String, hash: String) {
+        TODO("Not yet implemented")
+    }
+
     override fun getScoreboard(): Scoreboard {
         TODO("Not yet implemented")
     }
@@ -1391,6 +1704,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun sendTitle(title: String?, subtitle: String?, fadeIn: Int, stay: Int, fadeOut: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun updateTitle(title: Title) {
+        TODO("Not yet implemented")
+    }
+
+    override fun hideTitle() {
         TODO("Not yet implemented")
     }
 
@@ -1526,11 +1847,83 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun locale(): Locale {
+        TODO("Not yet implemented")
+    }
+
     override fun getLocale(): String {
         TODO("Not yet implemented")
     }
 
+    override fun getAffectsSpawning(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun setAffectsSpawning(affects: Boolean) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getViewDistance(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setViewDistance(viewDistance: Int) {
+        TODO("Not yet implemented")
+    }
+
     override fun updateCommands() {
+        TODO("Not yet implemented")
+    }
+
+    override fun getResourcePackStatus(): PlayerResourcePackStatusEvent.Status? {
+        TODO("Not yet implemented")
+    }
+
+    override fun getResourcePackHash(): String? {
+        TODO("Not yet implemented")
+    }
+
+    override fun hasResourcePack(): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPlayerProfile(): PlayerProfile {
+        TODO("Not yet implemented")
+    }
+
+    override fun setPlayerProfile(profile: PlayerProfile) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getCooldownPeriod(): Float {
+        TODO("Not yet implemented")
+    }
+
+    override fun getCooledAttackStrength(adjustTicks: Float): Float {
+        TODO("Not yet implemented")
+    }
+
+    override fun resetCooldown() {
+        TODO("Not yet implemented")
+    }
+
+    override fun <T : Any?> getClientOption(option: ClientOption<T>): T {
+        TODO("Not yet implemented")
+    }
+
+    override fun boostElytra(firework: ItemStack): Firework? {
+        TODO("Not yet implemented")
+    }
+
+    override fun sendOpLevel(level: Byte) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getTrackedPlayers(): MutableSet<Player> {
+        TODO("Not yet implemented")
+    }
+
+    override fun getClientBrandName(): String? {
         TODO("Not yet implemented")
     }
 

@@ -283,7 +283,7 @@ object Commodore {
                                 }
                             }
                         }
-                        if (retType.getSort() === Type.OBJECT && retType.internalName
+                        if (retType.sort == Type.OBJECT && retType.internalName
                                 .equals("org/bukkit/Material") && owner.startsWith("org/bukkit")
                         ) {
                             super.visitMethodInsn(opcode, owner, name, desc, itf)
