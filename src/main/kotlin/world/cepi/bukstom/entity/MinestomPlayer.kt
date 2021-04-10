@@ -1664,7 +1664,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setResourcePack(url: String, hash: String) {
-        TODO("Not yet implemented")
+        minestomPlayer.setResourcePack(ResourcePack(url, hash))
     }
 
     override fun getScoreboard(): Scoreboard {
