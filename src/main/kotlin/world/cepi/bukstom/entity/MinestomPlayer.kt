@@ -1,5 +1,7 @@
 package world.cepi.bukstom.entity
 
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
 import net.minestom.server.chat.ColoredText
 import net.minestom.server.resourcepack.ResourcePack
 import org.bukkit.*
@@ -997,11 +999,11 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun getDisplayName(): String {
-        return minestomPlayer.displayName!!.rawMessage
+        return PlainComponentSerializer.plain().serialize(minestomPlayer.displayName ?: Component.text(minestomPlayer.username))
     }
 
     override fun setDisplayName(name: String?) {
-        minestomPlayer.displayName = ColoredText.of(name!!)
+        name?.let { minestomPlayer.displayName = Component.text(name) }
     }
 
     override fun getPlayerListName(): String {
@@ -1144,6 +1146,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun sendBlockDamage(loc: Location, progress: Float) {
+        TODO("Not yet implemented")
+    }
+
     override fun sendChunkChange(loc: Location, sx: Int, sy: Int, sz: Int, data: ByteArray): Boolean {
         TODO("Not yet implemented")
     }
@@ -1257,6 +1263,30 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setFoodLevel(value: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getSaturatedRegenRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setSaturatedRegenRate(ticks: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getUnsaturatedRegenRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setUnsaturatedRegenRate(ticks: Int) {
+        TODO("Not yet implemented")
+    }
+
+    override fun getStarvationRate(): Int {
+        TODO("Not yet implemented")
+    }
+
+    override fun setStarvationRate(ticks: Int) {
         TODO("Not yet implemented")
     }
 

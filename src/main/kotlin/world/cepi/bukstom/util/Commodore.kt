@@ -1,22 +1,22 @@
-import com.google.common.io.ByteStreams;
+import com.google.common.io.ByteStreams
 import joptsimple.OptionParser
 import joptsimple.OptionSpec
-import java.io.File;
-import java.io.FileOutputStream;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.jar.JarOutputStream;
-import java.util.zip.ZipEntry;
-import org.bukkit.Material;
-import org.bukkit.plugin.AuthorNagException;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.MethodVisitor;
-import org.objectweb.asm.Opcodes;
-import org.objectweb.asm.Type;
+import java.io.File
+import java.io.FileOutputStream
+import java.util.Arrays
+import java.util.Enumeration
+import java.util.jar.JarEntry
+import java.util.jar.JarFile
+import java.util.jar.JarOutputStream
+import java.util.zip.ZipEntry
+import org.bukkit.Material
+import org.bukkit.plugin.AuthorNagException
+import org.objectweb.asm.ClassReader
+import org.objectweb.asm.ClassVisitor
+import org.objectweb.asm.ClassWriter
+import org.objectweb.asm.MethodVisitor
+import org.objectweb.asm.Opcodes
+import org.objectweb.asm.Type
 
 
 
@@ -52,7 +52,7 @@ object Commodore {
             }
             for (`in` in input.listFiles()) {
                 if (`in`.name.endsWith(".jar")) {
-                    convert(`in`, File(output, `in`.getName()))
+                    convert(`in`, File(output, `in`.name))
                 }
             }
         } else {
@@ -221,7 +221,7 @@ object Commodore {
                             || owner.startsWith("org/bukkit/block/") && "$desc $name" == "()Lorg/bukkit/Material; getType"
                         ) {
                             val args: Array<Type> = Type.getArgumentTypes(desc)
-                            val newArgs: Array<Type?> = arrayOfNulls<Type>(args.size + 1)
+                            val newArgs: Array<Type?> = arrayOfNulls(args.size + 1)
                             newArgs[0] = Type.getObjectType(owner)
                             System.arraycopy(args, 0, newArgs, 1, args.size)
                             super.visitMethodInsn(
@@ -283,7 +283,7 @@ object Commodore {
                                 }
                             }
                         }
-                        if (retType.getSort() === Type.OBJECT && retType.getInternalName()
+                        if (retType.getSort() === Type.OBJECT && retType.internalName
                                 .equals("org/bukkit/Material") && owner.startsWith("org/bukkit")
                         ) {
                             super.visitMethodInsn(opcode, owner, name, desc, itf)

@@ -2,10 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.30"
+    id("org.jetbrains.kotlin.jvm") version "1.4.32"
     kotlin("plugin.serialization") version "1.4.10"
     id("com.github.johnrengelman.shadow") version "6.1.0"
-    maven
+    `maven-publish`
 
     // Apply the application plugin to add support for building a jar
     java
@@ -38,13 +38,9 @@ dependencies {
     compileOnly(kotlin("reflect"))
 
     // Compile Minestom into project
-    compileOnly("com.github.Minestom:Minestom:5eb5f32095")
-
-    // OkHttp
-    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
-
+    compileOnly("com.github.Minestom:Minestom:05a553eb4e")
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     // Get the spigot API
     implementation("org.spigotmc:spigot-api:1.16.5-R0.1-SNAPSHOT")
@@ -55,7 +51,7 @@ dependencies {
     implementation("org.apache.commons:commons-collections4:4.4")
 
     // Weird bukkit deps
-    implementation("net.sf.jopt-simple:jopt-simple:4.7")
+    implementation("net.sf.jopt-simple:jopt-simple:4.9")
 }
 
 tasks.withType<Test> {
@@ -77,3 +73,5 @@ tasks {
     build { dependsOn(shadowJar) }
 
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions.jvmTarget = "11" }
