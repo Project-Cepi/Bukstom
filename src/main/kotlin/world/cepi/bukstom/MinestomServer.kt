@@ -173,7 +173,7 @@ class MinestomServer: Server {
     }
 
     override fun getPlayer(name: String): Player? {
-        TODO("Not yet implemented")
+        return MinecraftServer.getConnectionManager().findPlayer(name)?.let { MinestomPlayer(it) }
     }
 
     override fun getPlayer(id: UUID): Player? {
@@ -181,7 +181,7 @@ class MinestomServer: Server {
     }
 
     override fun getPlayerExact(name: String): Player? {
-        TODO("Not yet implemented")
+        return MinecraftServer.getConnectionManager().getPlayer(name)?.let { MinestomPlayer(it) }
     }
 
     override fun matchPlayer(name: String): MutableList<Player> {
@@ -189,7 +189,7 @@ class MinestomServer: Server {
     }
 
     override fun getPlayerUniqueId(playerName: String): UUID? {
-        TODO("Not yet implemented")
+        return getPlayer(playerName)?.uniqueId
     }
 
     override fun getPluginManager(): PluginManager {
