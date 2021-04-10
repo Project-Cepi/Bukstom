@@ -40,16 +40,13 @@ dependencies {
 
     // Compile Minestom into project
     compileOnly("com.github.Minestom:Minestom:05a553eb4e")
+
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-    // Get the spigot API
+    // Get the paper API
     implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
-
-    // Get commons lib
-    implementation("com.google.guava:guava:30.1-jre")
-    implementation("commons-collections:commons-collections:3.2.2")
-    implementation("org.apache.commons:commons-collections4:4.4")
+    implementation("commons-lang:commons-lang:2.6")
 
     // Weird bukkit deps
     implementation("net.sf.jopt-simple:jopt-simple:4.9")
