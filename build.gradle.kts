@@ -48,7 +48,7 @@ dependencies {
     implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
 
     // Weird bukkit deps
-    implementation("net.sf.jopt-simple:jopt-simple:4.9")
+    implementation("net.sf.jopt-simple:jopt-simple:5.0.4")
 }
 
 tasks.withType<Test> {
