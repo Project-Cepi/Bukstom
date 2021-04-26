@@ -42,7 +42,7 @@ dependencies {
     compileOnly("com.github.Minestom:Minestom:05a553eb4e")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
 
     // Get the paper API
     implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
