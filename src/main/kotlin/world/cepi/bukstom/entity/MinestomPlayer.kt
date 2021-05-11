@@ -955,6 +955,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
+    override fun isDeeplySleeping(): Boolean {
+        TODO("Not yet implemented")
+    }
+
     override fun getSleepTicks(): Int {
         TODO("Not yet implemented")
     }
@@ -1848,6 +1852,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun locale(): Locale {
+        TODO("Not yet implemented")
+    }
+
+    override fun getPing(): Int {
         TODO("Not yet implemented")
     }
 
