@@ -4,6 +4,7 @@ import io.papermc.paper.inventory.ItemRarity
 import net.kyori.adventure.text.flattener.ComponentFlattener
 import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.SECTION_CHAR
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
 import net.minestom.server.MinecraftServer
 import org.bukkit.Bukkit
@@ -36,9 +37,8 @@ object MinestomUnsafeValues: UnsafeValues {
 
     override fun colorDownsamplingGsonComponentSerializer() = GsonComponentSerializer.colorDownsamplingGson()
 
-    override fun legacyComponentSerializer(): LegacyComponentSerializer {
-        TODO("Not yet implemented")
-    }
+    override fun legacyComponentSerializer(): LegacyComponentSerializer =
+        LegacyComponentSerializer.legacy(SECTION_CHAR)
 
     override fun reportTimings() {
         TODO("Not yet implemented")

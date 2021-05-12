@@ -45,6 +45,8 @@ import org.bukkit.util.BoundingBox
 import org.bukkit.util.RayTraceResult
 import org.bukkit.util.Vector
 import world.cepi.bukstom.MinestomServer
+import world.cepi.bukstom.util.teleport
+import world.cepi.bukstom.util.toMinestomVector
 import world.cepi.bukstom.util.toPosition
 import java.net.InetSocketAddress
 import java.util.*
@@ -195,12 +197,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun customName(): Component? {
-        TODO("Not yet implemented")
-    }
+    override fun customName(): Component? = minestomPlayer.displayName
 
     override fun customName(customName: Component?) {
-        TODO("Not yet implemented")
+        minestomPlayer.customName = customName
     }
 
     override fun getCustomName(): String? {
@@ -224,7 +224,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setVelocity(velocity: Vector) {
-        TODO("Not yet implemented")
+        minestomPlayer.velocity = velocity.toMinestomVector()
     }
 
     override fun getVelocity(): Vector {
@@ -262,22 +262,22 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun teleport(location: Location): Boolean {
-        minestomPlayer.teleport(location.toPosition())
+        minestomPlayer.teleport(location)
         return true
     }
 
     override fun teleport(location: Location, cause: PlayerTeleportEvent.TeleportCause): Boolean {
-        minestomPlayer.teleport(location.toPosition())
+        minestomPlayer.teleport(location)
         return true
     }
 
     override fun teleport(destination: Entity): Boolean {
-        minestomPlayer.teleport(destination.location.toPosition())
+        minestomPlayer.teleport(destination.location)
         return true
     }
 
     override fun teleport(destination: Entity, cause: PlayerTeleportEvent.TeleportCause): Boolean {
-        minestomPlayer.teleport(destination.location.toPosition())
+        minestomPlayer.teleport(destination.location)
         return true
     }
 

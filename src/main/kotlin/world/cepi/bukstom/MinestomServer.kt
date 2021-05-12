@@ -41,6 +41,7 @@ import net.minestom.server.command.builder.CommandDispatcher
 import net.minestom.server.data.DataImpl
 import org.bukkit.command.*
 import world.cepi.bukstom.command.MinestomCommandSender
+import world.cepi.bukstom.command.MinestomConsoleCommandSender
 import world.cepi.kstom.Manager
 import world.cepi.kstom.Manager.data
 import world.cepi.kstom.command.register
@@ -429,9 +430,7 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
-    override fun getConsoleSender(): ConsoleCommandSender {
-        TODO("Not yet implemented")
-    }
+    override fun getConsoleSender() = MinestomConsoleCommandSender
 
     override fun getWorldContainer(): File {
         TODO("Not yet implemented")
