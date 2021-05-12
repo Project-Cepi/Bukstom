@@ -5,6 +5,8 @@ import com.destroystokyo.paper.Title
 import com.destroystokyo.paper.block.TargetBlockInfo
 import com.destroystokyo.paper.entity.TargetEntityInfo
 import com.destroystokyo.paper.profile.PlayerProfile
+import net.kyori.adventure.key.Key
+import net.kyori.adventure.sound.SoundStop
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
 import net.md_5.bungee.api.chat.BaseComponent
@@ -42,6 +44,7 @@ import org.bukkit.scoreboard.Scoreboard
 import org.bukkit.util.BoundingBox
 import org.bukkit.util.RayTraceResult
 import org.bukkit.util.Vector
+import world.cepi.bukstom.MinestomServer
 import java.net.InetSocketAddress
 import java.util.*
 
@@ -247,12 +250,14 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun getWorld(): World {
-        TODO("Not yet implemented")
-    }
+    override fun getWorld(): World =
+        minestomPlayer.instance?.data?.get<World>(MinestomServer.worldKey) ?: Bukkit.getServer().worlds[0]
 
     override fun setRotation(yaw: Float, pitch: Float) {
-        TODO("Not yet implemented")
+        minestomPlayer.position.let {
+            it.yaw = yaw
+            it.pitch = pitch
+        }
     }
 
     override fun teleport(location: Location): Boolean {
@@ -291,9 +296,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun remove() {
-        TODO("Not yet implemented")
-    }
+    override fun remove() = minestomPlayer.remove()
 
     override fun isDead(): Boolean {
         return minestomPlayer.isDead
@@ -359,9 +362,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         return minestomPlayer.uuid
     }
 
-    override fun getTicksLived(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getTicksLived() = minestomPlayer.aliveTicks.toInt()
 
     override fun setTicksLived(value: Int) {
         TODO("Not yet implemented")
@@ -1400,7 +1401,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun stopSound(sound: String) {
-        TODO("Not yet implemented")
+        minestomPlayer.stopSound(SoundStop.named(Key.key(sound)))
     }
 
     override fun stopSound(sound: Sound, category: SoundCategory?) {
@@ -1843,9 +1844,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun locale(): Locale {
-        TODO("Not yet implemented")
-    }
+    override fun locale(): Locale = minestomPlayer.locale ?: Locale.ENGLISH
 
     override fun getPing(): Int {
         TODO("Not yet implemented")

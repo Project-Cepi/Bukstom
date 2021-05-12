@@ -38,10 +38,14 @@ import java.util.function.Consumer
 import java.util.logging.Level
 import java.util.logging.Logger
 import net.minestom.server.command.builder.CommandDispatcher
+import net.minestom.server.data.DataImpl
 import org.bukkit.command.*
 import world.cepi.bukstom.command.MinestomCommandSender
+import world.cepi.kstom.Manager
+import world.cepi.kstom.Manager.data
 import world.cepi.kstom.command.register
 import world.cepi.kstom.command.unregister
+import world.cepi.kstom.data.data
 
 
 class MinestomServer: Server {
@@ -206,10 +210,14 @@ class MinestomServer: Server {
 
     override fun getServicesManager(): ServicesManager = servicesManager
 
-    // TODO grab instances
-    override fun getWorlds(): MutableList<World> {
-        return mutableListOf()
-    }
+    override fun getWorlds(): MutableList<World> = Manager.instance.instances.map {
+        if (it.data == null) it.data = data {
+            this[worldKey] = MinestomWorld(it)
+        }
+
+        it.data!!.get<World>(worldKey)!!
+    }.toMutableList()
+
 
     override fun createWorld(creator: WorldCreator): World? {
         TODO("Not yet implemented")
@@ -784,6 +792,10 @@ class MinestomServer: Server {
             Logger.getLogger(MinestomServer::class.java.name)
                 .log(Level.SEVERE, ex.message + " loading " + plugin.description.fullName + " (Is it up to date?)", ex)
         }
+    }
+
+    companion object {
+        const val worldKey = "bukkitWorld"
     }
 
 
