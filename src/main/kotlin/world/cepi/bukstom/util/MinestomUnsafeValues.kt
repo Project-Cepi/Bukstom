@@ -18,8 +18,11 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.material.MaterialData
 import org.bukkit.plugin.PluginDescriptionFile
 import java.util.logging.Level
+import org.bukkit.plugin.InvalidPluginException
 
 object MinestomUnsafeValues: UnsafeValues {
+
+    private val SUPPORTED_API: List<String> = listOf("1.13", "1.14", "1.15", "1.16")
 
     override fun getTranslationKey(itemStack: ItemStack?): String {
         TODO("Not yet implemented")
@@ -73,8 +76,9 @@ object MinestomUnsafeValues: UnsafeValues {
         TODO("Not yet implemented")
     }
 
+    // TODO this currently "pretends" we support all plugins
     override fun checkSupported(pdf: PluginDescriptionFile?) {
-        TODO("Not yet implemented")
+
     }
 
     private fun isLegacy(pdf: PluginDescriptionFile): Boolean {
@@ -104,9 +108,7 @@ object MinestomUnsafeValues: UnsafeValues {
         return MinecraftServer.getBrandName()
     }
 
-    override fun isSupportedApiVersion(apiVersion: String?): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun isSupportedApiVersion(apiVersion: String?) = true
 
     override fun serializeItem(item: ItemStack?): ByteArray {
         TODO("Not yet implemented")

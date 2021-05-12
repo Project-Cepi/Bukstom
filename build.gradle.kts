@@ -50,6 +50,9 @@ dependencies {
 
     // Weird bukkit deps
     implementation("net.sf.jopt-simple:jopt-simple:5.0.4")
+
+    // Add KStom
+    compileOnly("com.github.Project-Cepi:KStom:1ff18b0905")
 }
 
 tasks.withType<Test> {

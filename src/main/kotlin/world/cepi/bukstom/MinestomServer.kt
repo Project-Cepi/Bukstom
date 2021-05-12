@@ -29,9 +29,11 @@ import org.bukkit.permissions.Permission
 import org.bukkit.plugin.*
 import org.bukkit.plugin.java.JavaPluginLoader
 import org.bukkit.plugin.messaging.Messenger
+import org.bukkit.plugin.messaging.StandardMessenger
 import org.bukkit.scheduler.BukkitScheduler
 import org.bukkit.scoreboard.ScoreboardManager
 import org.bukkit.util.CachedServerIcon
+import world.cepi.bukstom.scheduler.MinestomScheduler
 import world.cepi.bukstom.util.MinestomUnsafeValues
 import java.awt.image.BufferedImage
 import java.io.File
@@ -43,9 +45,12 @@ import java.util.logging.Logger
 
 class MinestomServer: Server {
     val commandMap = MinestomCommandMap(this)
-    private val pluginManager = MinestomPluginLoader(this, commandMap)
+    private val pluginManager = SimplePluginManager(this, commandMap)
     private val logger = Logger.getLogger("Minecraft")
     private val helpMap = MinestomHelpMap(this)
+    private val messanger = StandardMessenger()
+    private val servicesManager = SimpleServicesManager()
+    private val scheduler = MinestomScheduler()
 
     override fun sendPluginMessage(source: Plugin, channel: String, message: ByteArray) {
         TODO("Not yet implemented")
@@ -196,16 +201,13 @@ class MinestomServer: Server {
         return pluginManager
     }
 
-    override fun getScheduler(): BukkitScheduler {
-        TODO("Not yet implemented")
-    }
+    override fun getScheduler(): BukkitScheduler = scheduler
 
-    override fun getServicesManager(): ServicesManager {
-        TODO("Not yet implemented")
-    }
+    override fun getServicesManager(): ServicesManager = servicesManager
 
+    // TODO grab instances
     override fun getWorlds(): MutableList<World> {
-        TODO("Not yet implemented")
+        return mutableListOf()
     }
 
     override fun createWorld(creator: WorldCreator): World? {
@@ -430,9 +432,7 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
-    override fun getMessenger(): Messenger {
-        TODO("Not yet implemented")
-    }
+    override fun getMessenger(): Messenger = messanger
 
     override fun getHelpMap(): HelpMap {
         return helpMap
@@ -490,8 +490,9 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
+    // todo this is a *lie*
     override fun isPrimaryThread(): Boolean {
-        TODO("Not yet implemented")
+        return true
     }
 
     override fun motd(): Component {
