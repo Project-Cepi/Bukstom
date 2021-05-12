@@ -20,21 +20,18 @@ import org.bukkit.plugin.PluginDescriptionFile
 import java.util.logging.Level
 
 object MinestomUnsafeValues: UnsafeValues {
-    override fun componentFlattener(): ComponentFlattener {
+
+    override fun getTranslationKey(itemStack: ItemStack?): String {
         TODO("Not yet implemented")
     }
 
-    override fun plainComponentSerializer(): PlainComponentSerializer {
-        TODO("Not yet implemented")
-    }
+    override fun componentFlattener() = ComponentFlattener.basic()
 
-    override fun gsonComponentSerializer(): GsonComponentSerializer {
-        TODO("Not yet implemented")
-    }
+    override fun plainComponentSerializer() = PlainComponentSerializer.plain()
 
-    override fun colorDownsamplingGsonComponentSerializer(): GsonComponentSerializer {
-        TODO("Not yet implemented")
-    }
+    override fun gsonComponentSerializer() = GsonComponentSerializer.gson()
+
+    override fun colorDownsamplingGsonComponentSerializer() = GsonComponentSerializer.colorDownsamplingGson()
 
     override fun legacyComponentSerializer(): LegacyComponentSerializer {
         TODO("Not yet implemented")

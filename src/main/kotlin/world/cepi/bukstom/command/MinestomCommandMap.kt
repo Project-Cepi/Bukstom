@@ -41,8 +41,8 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
      * {@inheritDoc}
      */
     override fun register(label: String, fallbackPrefix: String, command: Command): Boolean {
-        val label = label.toLowerCase(Locale.ENGLISH).trim { it <= ' ' }
-        val fallbackPrefix = fallbackPrefix.toLowerCase(Locale.ENGLISH).trim { it <= ' ' }
+        val label = label.lowercase(Locale.ENGLISH).trim { it <= ' ' }
+        val fallbackPrefix = fallbackPrefix.lowercase(Locale.ENGLISH).trim { it <= ' ' }
         val registered = register(label, command, false, fallbackPrefix)
         val iterator = command.aliases.iterator()
         while (iterator.hasNext()) {
@@ -105,7 +105,7 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
         if (args.isEmpty())
             return false
 
-        val sentCommandLabel = args[0].toLowerCase(Locale.ENGLISH)
+        val sentCommandLabel = args[0].lowercase(Locale.ENGLISH)
         val target = getCommand(sentCommandLabel) ?: return false
         try {
             target.timings.startTiming() // Spigot
@@ -136,7 +136,7 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
     }
 
     override fun getCommand(name: String): Command? {
-        return knownCommands[name.toLowerCase(Locale.ENGLISH)]
+        return knownCommands[name.lowercase(Locale.ENGLISH)]
     }
 
     override fun tabComplete(sender: CommandSender, cmdLine: String): List<String>? {
@@ -211,10 +211,10 @@ open class MinestomCommandMap(private val server: Server) : CommandMap {
 
             // We register these as commands so they have absolute priority.
             if (targets.size > 0) {
-                knownCommands[alias.toLowerCase(Locale.ENGLISH)] =
-                    FormattedCommandAlias(alias.toLowerCase(Locale.ENGLISH), targets.toTypedArray())
+                knownCommands[alias.lowercase(Locale.ENGLISH)] =
+                    FormattedCommandAlias(alias.lowercase(Locale.ENGLISH), targets.toTypedArray())
             } else {
-                knownCommands.remove(alias.toLowerCase(Locale.ENGLISH))
+                knownCommands.remove(alias.lowercase(Locale.ENGLISH))
             }
         }
     }

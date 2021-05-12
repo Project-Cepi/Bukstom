@@ -419,20 +419,16 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun isSilent(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun isSilent() = minestomPlayer.isSilent
 
     override fun setSilent(flag: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.isSilent = flag
     }
 
-    override fun hasGravity(): Boolean {
-        TODO("Not yet implemented")
-    }
+    override fun hasGravity() = !minestomPlayer.hasNoGravity()
 
     override fun setGravity(gravity: Boolean) {
-        TODO("Not yet implemented")
+        minestomPlayer.setNoGravity(!gravity)
     }
 
     override fun getPortalCooldown(): Int {
@@ -519,12 +515,10 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun getHealth(): Double {
-        TODO("Not yet implemented")
-    }
+    override fun getHealth() = minestomPlayer.health.toDouble()
 
     override fun setHealth(health: Double) {
-        TODO("Not yet implemented")
+        minestomPlayer.health = health.toFloat()
     }
 
     override fun getAbsorptionAmount(): Double {
@@ -555,9 +549,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
         TODO("Not yet implemented")
     }
 
-    override fun getEyeHeight(): Double {
-        TODO("Not yet implemented")
-    }
+    override fun getEyeHeight() = minestomPlayer.eyeHeight
 
     override fun getEyeHeight(ignorePose: Boolean): Double {
         TODO("Not yet implemented")

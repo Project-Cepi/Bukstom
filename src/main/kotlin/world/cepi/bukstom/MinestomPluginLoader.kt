@@ -694,7 +694,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
     }
 
     override fun getPermission(name: String): Permission? {
-        return permissions[name.toLowerCase(Locale.ENGLISH)]
+        return permissions[name.lowercase(Locale.ENGLISH)]
     }
 
     override fun addPermission(perm: Permission) {
@@ -703,7 +703,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
 
     @Deprecated("")
     fun addPermission(perm: Permission, dirty: Boolean) {
-        val name = perm.name.toLowerCase(Locale.ENGLISH)
+        val name = perm.name.lowercase(Locale.ENGLISH)
         require(!permissions.containsKey(name)) { "The permission $name is already defined!" }
         permissions[name] = perm
         calculatePermissionDefault(perm, dirty)
@@ -718,11 +718,11 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
     }
 
     override fun removePermission(name: String) {
-        permissions.remove(name.toLowerCase(Locale.ENGLISH))
+        permissions.remove(name.lowercase(Locale.ENGLISH))
     }
 
     override fun recalculatePermissionDefaults(perm: Permission) {
-        if (permissions.containsKey(perm.name.toLowerCase(Locale.ENGLISH))) {
+        if (permissions.containsKey(perm.name.lowercase(Locale.ENGLISH))) {
             defaultPerms[true]!!.remove(perm)
             defaultPerms[false]!!.remove(perm)
             calculatePermissionDefault(perm, true)
@@ -758,7 +758,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
     }
 
     override fun subscribeToPermission(permission: String, permissible: Permissible) {
-        val name = permission.toLowerCase(Locale.ENGLISH)
+        val name = permission.lowercase(Locale.ENGLISH)
         var map = permSubs[name]
         if (map == null) {
             map = WeakHashMap()
@@ -768,7 +768,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
     }
 
     override fun unsubscribeFromPermission(permission: String, permissible: Permissible) {
-        val name = permission.toLowerCase(Locale.ENGLISH)
+        val name = permission.lowercase(Locale.ENGLISH)
         val map = permSubs[name]
         if (map != null) {
             map.remove(permissible)
@@ -779,7 +779,7 @@ class MinestomPluginLoader(private val server: Server, private val commandMap: M
     }
 
     override fun getPermissionSubscriptions(permission: String): Set<Permissible> {
-        val name = permission.toLowerCase(Locale.ENGLISH)
+        val name = permission.lowercase(Locale.ENGLISH)
         val map: Map<Permissible, Boolean>? = permSubs[name]
         return if (map == null) {
             ImmutableSet.of()
