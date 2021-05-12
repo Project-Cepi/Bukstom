@@ -40,6 +40,8 @@ import java.util.logging.Logger
 import net.minestom.server.command.builder.CommandDispatcher
 import org.bukkit.command.*
 import world.cepi.bukstom.command.MinestomCommandSender
+import world.cepi.kstom.command.register
+import world.cepi.kstom.command.unregister
 
 
 class MinestomServer: Server {
@@ -729,13 +731,16 @@ class MinestomServer: Server {
         }
     }
 
-    val currentlyRegisteredCommands = mutableMapOf<String, Command>()
+    val currentlyRegisteredCommands = mutableListOf<net.minestom.server.command.builder.Command>()
 
     fun syncCommands() {
 
+        currentlyRegisteredCommands.forEach { it.unregister() }
+
         // Register all commands, vanilla ones will be using the old dispatcher references
         for ((label, command) in commandMap.knownCommands) {
-            (object: net.minestom.server.command.builder.SimpleCommand(label) {
+
+            val commandObject = object: net.minestom.server.command.builder.SimpleCommand(label) {
                 override fun process(
                     sender: net.minestom.server.command.CommandSender,
                     commandLabel: String,
@@ -747,7 +752,11 @@ class MinestomServer: Server {
                     commandString: String?
                 ): Boolean = true
 
-            })
+            }
+
+            currentlyRegisteredCommands.add(commandObject)
+
+            commandObject.register()
         }
     }
 
