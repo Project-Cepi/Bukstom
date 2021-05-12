@@ -11,10 +11,6 @@ import org.bukkit.*
 import org.bukkit.advancement.Advancement
 import org.bukkit.block.data.BlockData
 import org.bukkit.boss.*
-import org.bukkit.command.CommandMap
-import org.bukkit.command.CommandSender
-import org.bukkit.command.ConsoleCommandSender
-import org.bukkit.command.PluginCommand
 import world.cepi.bukstom.command.MinestomCommandMap
 import world.cepi.bukstom.entity.MinestomPlayer
 import org.bukkit.entity.Entity
@@ -41,6 +37,9 @@ import java.util.*
 import java.util.function.Consumer
 import java.util.logging.Level
 import java.util.logging.Logger
+import net.minestom.server.command.builder.CommandDispatcher
+import org.bukkit.command.*
+import world.cepi.bukstom.command.MinestomCommandSender
 
 
 class MinestomServer: Server {
@@ -726,13 +725,36 @@ class MinestomServer: Server {
 //            CraftDefaultPermissions.registerCorePermissions()
 //            loadCustomPermissions()
 //            helpMap.initializeCommands()
-//            syncCommands()
+            syncCommands()
+        }
+    }
+
+    val currentlyRegisteredCommands = mutableMapOf<String, Command>()
+
+    fun syncCommands() {
+
+        // Register all commands, vanilla ones will be using the old dispatcher references
+        for ((label, command) in commandMap.knownCommands) {
+            (object: net.minestom.server.command.builder.SimpleCommand(label) {
+                override fun process(
+                    sender: net.minestom.server.command.CommandSender,
+                    commandLabel: String,
+                    args: Array<out String>
+                ): Boolean = command.execute(MinestomCommandSender(sender), commandLabel, args)
+
+                override fun hasAccess(
+                    sender: net.minestom.server.command.CommandSender,
+                    commandString: String?
+                ): Boolean = true
+
+            })
         }
     }
 
     fun disablePlugins() {
         pluginManager.disablePlugins()
     }
+
     private fun enablePlugin(plugin: Plugin) {
         try {
             val perms: List<Permission> = plugin.description.permissions
