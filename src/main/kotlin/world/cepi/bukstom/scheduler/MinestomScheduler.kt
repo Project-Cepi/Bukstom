@@ -124,7 +124,7 @@ class MinestomScheduler : BukkitScheduler {
     }
 
     override fun runTaskTimer(plugin: Plugin, task: BukkitRunnable, delay: Long, period: Long) =
-        MinestomTask(Manager.scheduler.buildTask(task).delay(delay, TimeUnit.TICK).repeat().schedule(), plugin)
+        MinestomTask(Manager.scheduler.buildTask(task).delay(delay, TimeUnit.TICK).repeat(period, TimeUnit.TICK).schedule(), plugin)
 
     override fun runTaskTimerAsynchronously(plugin: Plugin, task: Runnable, delay: Long, period: Long) =
         MinestomTask(Manager.scheduler.buildTask(task).delay(delay, TimeUnit.TICK).schedule(), plugin)
