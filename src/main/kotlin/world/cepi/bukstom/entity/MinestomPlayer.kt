@@ -45,6 +45,7 @@ import org.bukkit.util.BoundingBox
 import org.bukkit.util.RayTraceResult
 import org.bukkit.util.Vector
 import world.cepi.bukstom.MinestomServer
+import world.cepi.bukstom.util.toPosition
 import java.net.InetSocketAddress
 import java.util.*
 
@@ -261,28 +262,30 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun teleport(location: Location): Boolean {
-        TODO("Not yet implemented")
+        minestomPlayer.teleport(location.toPosition())
+        return true
     }
 
     override fun teleport(location: Location, cause: PlayerTeleportEvent.TeleportCause): Boolean {
-        TODO("Not yet implemented")
+        minestomPlayer.teleport(location.toPosition())
+        return true
     }
 
     override fun teleport(destination: Entity): Boolean {
-        TODO("Not yet implemented")
+        minestomPlayer.teleport(destination.location.toPosition())
+        return true
     }
 
     override fun teleport(destination: Entity, cause: PlayerTeleportEvent.TeleportCause): Boolean {
-        TODO("Not yet implemented")
+        minestomPlayer.teleport(destination.location.toPosition())
+        return true
     }
 
     override fun getNearbyEntities(x: Double, y: Double, z: Double): MutableList<Entity> {
         TODO("Not yet implemented")
     }
 
-    override fun getEntityId(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getEntityId() = minestomPlayer.entityId
 
     override fun getFireTicks(): Int {
         TODO("Not yet implemented")
@@ -293,7 +296,7 @@ class MinestomPlayer(val minestomPlayer: net.minestom.server.entity.Player): Pla
     }
 
     override fun setFireTicks(ticks: Int) {
-        TODO("Not yet implemented")
+        minestomPlayer.setFireForDuration(ticks)
     }
 
     override fun remove() = minestomPlayer.remove()

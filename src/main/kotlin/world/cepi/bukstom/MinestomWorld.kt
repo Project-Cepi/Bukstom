@@ -86,9 +86,8 @@ class MinestomWorld(val instance: Instance) : World {
         TODO("Not yet implemented")
     }
 
-    override fun getPlayerCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getPlayerCount(): Int =
+        instance.entities.filterIsInstance<net.minestom.server.entity.Player>().size
 
     override fun getMoonPhase(): MoonPhase {
         TODO("Not yet implemented")
