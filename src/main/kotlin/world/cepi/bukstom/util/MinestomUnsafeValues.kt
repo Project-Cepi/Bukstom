@@ -1,7 +1,10 @@
 package world.cepi.bukstom.util
 
 import io.papermc.paper.inventory.ItemRarity
+import net.kyori.adventure.text.flattener.ComponentFlattener
+import net.kyori.adventure.text.serializer.gson.GsonComponentSerializer
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
+import net.kyori.adventure.text.serializer.plain.PlainComponentSerializer
 import net.minestom.server.MinecraftServer
 import org.bukkit.Bukkit
 import org.bukkit.Material
@@ -17,6 +20,22 @@ import org.bukkit.plugin.PluginDescriptionFile
 import java.util.logging.Level
 
 object MinestomUnsafeValues: UnsafeValues {
+    override fun componentFlattener(): ComponentFlattener {
+        TODO("Not yet implemented")
+    }
+
+    override fun plainComponentSerializer(): PlainComponentSerializer {
+        TODO("Not yet implemented")
+    }
+
+    override fun gsonComponentSerializer(): GsonComponentSerializer {
+        TODO("Not yet implemented")
+    }
+
+    override fun colorDownsamplingGsonComponentSerializer(): GsonComponentSerializer {
+        TODO("Not yet implemented")
+    }
+
     override fun legacyComponentSerializer(): LegacyComponentSerializer {
         TODO("Not yet implemented")
     }
@@ -121,6 +140,10 @@ object MinestomUnsafeValues: UnsafeValues {
     }
 
     override fun getItemStackRarity(itemStack: ItemStack?): ItemRarity {
+        TODO("Not yet implemented")
+    }
+
+    override fun getProtocolVersion(): Int {
         TODO("Not yet implemented")
     }
 }
