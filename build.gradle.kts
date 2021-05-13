@@ -43,7 +43,7 @@ dependencies {
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.0")
-    implementation("com.charleskorn.kaml:kaml:0.31.0")
+    implementation("com.charleskorn.kaml:kaml:0.33.0")
 
     // Get the paper API
     implementation("com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT")
