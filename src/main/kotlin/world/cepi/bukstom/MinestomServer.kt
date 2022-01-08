@@ -54,7 +54,7 @@ class MinestomServer: Server {
     private val pluginManager = SimplePluginManager(this, commandMap)
     private val logger = Logger.getLogger("Minecraft")
     private val helpMap = MinestomHelpMap(this)
-    private val messanger = StandardMessenger()
+    private val messenger = StandardMessenger()
     private val servicesManager = SimpleServicesManager()
     private val scheduler = MinestomScheduler()
 
@@ -440,7 +440,7 @@ class MinestomServer: Server {
         TODO("Not yet implemented")
     }
 
-    override fun getMessenger(): Messenger = messanger
+    override fun getMessenger(): Messenger = messenger
 
     override fun getHelpMap(): HelpMap {
         return helpMap
